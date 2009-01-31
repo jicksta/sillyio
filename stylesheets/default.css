@@ -1,13 +1,11 @@
+#top img {
+	border: none;
+}
 div#container {
   width: 900px;
   font-family: "Lucida Grande", Arial, sans-serif;
   font-size:  12px;
   margin: 0 auto;
-}
-p#top-links {
-  font-weight: bold;
-  font-size: 11px;
-  text-align: right;
 }
 
 div#header {
@@ -19,21 +17,52 @@ div#header {
 
 .ui-tabs-hide { display: none; }
 
-#hype-machine {
-	
-	height: 300px;
+#hype-machine div {
+	margin: 40px 0;
 }
 
-#hype-machine img#pretty-icons {
-
+#hype-machine div img {
 	float:  left;
+}
+
+#hype-machine div h2, #hype-machine div p {
+	padding-left:  100px;
 }
 
 #hype-machine div h2 {
 	text-transform: uppercase;
+	margin-bottom: 0;
+	font-weight: normal;
+}
+
+#hype-machine div{
+	margin-bottom: 10px;
+}
+
+#hype-machine div p {
+	margin-top: 5px;
+	font-size:  14px;
+	margin-left: 15px;
+}
+
+#hype-machine div#ahn img {
+	margin-top: 10px;
 }
 
 #logo {
 	border: 0;
 	height: 20px;
+}
+
+#demos, #customer-showcase  {
+	margin-top: 20px;
+	padding: 0 20px;
+	border:  1px solid #dadbdb;
+	background-color: #faf6ed;
+	color: #494949;
+}
+
+#demos h2 {
+	margin-top: 8px;
+	color: #494949;
 }

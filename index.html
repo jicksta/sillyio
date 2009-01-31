@@ -3,49 +3,135 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>jicksta/sillyio @ GitHub</title>
+	<title>Sillyio: Open-source, Adhearsion-based Twilio clone</title>
 	
-	  <script src="http://code.jquery.com/jquery-latest.js"></script>
-	  <script type="text/javascript" src="http://ui.jquery.com/testing/ui/ui.core.js"></script>
-	  <script type="text/javascript" src="http://ui.jquery.com/testing/ui/ui.tabs.js"></script>
 	<link rel="stylesheet" href="http://ui.jquery.com/testing/themes/base/ui.all.css" type="text/css">
-
-    <script>
-	  $(document).ready(function(){
-	    $("#tabs").tabs();
-	  });
-  	</script>
-
 	<link rel="stylesheet" type="text/css" href="stylesheets/default.css" media="screen"/>
 	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="http://ui.jquery.com/testing/ui/ui.core.js"></script>
+	<script type="text/javascript" src="http://ui.jquery.com/testing/ui/ui.tabs.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#tabs").tabs().css("border", "none");
+		});
+	</script>
+
 </head><body>
   <div id="container">
     
-    <p id="top-links">Free Server</p>
+    <p id="top">
+    	<a href="#home" onclick='$("#tabs").tabs("select", 0);'><img src="images/logo.png" alt="sillyio"/></a>
+    </p>
     
     <div id="tabs">
       
       <ul>
       	<li><a href="#home">
       		<!-- <img id="logo" src="images/logo.png" alt="sillyio"/> -->
-      		sillyio
+      		Home
       	</a></li>
       	<li><a href="#how-sillyio-works">How sillyio Works</a></li>
       	<li><a href="#pricing">Pricing</a></li>
+      	<li><a href="#faq">FAQ</a></li>
+      	<li><a href="#download">Download</a></li>
+      	<li><a href="http://groups.google.com/group/sillyio" onclick="window.location = this.href">Forum</a></li>
       </ul>
+      
+      
       
       <div id="home">
       	<div id="hype-machine">
       	
-      		<img src="images/hype.png" id="pretty-icons"/>
-      	
 	      	<div id="clouds-zomgs">
+	      		
+	      		<img src="images/hype-cloud.png" alt=""/>
+	      		
 	      		<h2>Telephony in the Cloud</h2>
+	      		
+	      		<p>Sillyio is an open-source <a href="http://adhearsion.com">Adhearsion</a> application for voice communications that implements all of Twilio's APIs. Instead of using Twilio, you can launch your own Amazon EC2 image in seconds. Yes, we just re-wrote their entire company and open-sourced it. Silly that it was that easy, huh?</p>
+	      	</div>
+	      	
+	      	<div id="ahn">
+	      		
+	      		<img src="images/hype-ahn.png" alt=""/>
+	      		
+	      		<h2>Use Adhearsion, a <strong>real</strong> voice-development framework</h2>
+	      		
 	      		<p>Sillyio is an open-source <a href="http://adhearsion.com">Adhearsion</a> application for voice communications that implements all of Twilio's APIs. Instead of using Twilio, you can launch your own Amazon EC2 image in seconds. Yes, we just re-wrote their entire company and open sourced it. Silly, huh?</p>
 	      	</div>
+	      	
+	      	<div id="aws">
+	      		
+	      		<img src="images/hype-aws.png" alt=""/>
+	      		
+	      		<h2>Open-source and instantly ready for Amazon EC2</h2>
+	      		
+	      		<p>Sillyio is an open-source <a href="http://adhearsion.com">Adhearsion</a> application for voice communications that implements all of Twilio's APIs. Instead of using Twilio, you can launch your own Amazon EC2 image in seconds. Yes, we just re-wrote their entire company and open sourced it. Silly, huh?</p>
+	      	</div>
+	      	      	
       	</div>
+      	
+      	<div id="demos" class="ui-corner-all">
+      		<h2>Sillyio demos and source code samples</h2>
+      		
+      		<ul>
+      			<li><span class="demo-name">Hello World</span> </li>
+      			<li>Weather By Phone</li>
+      			<li>Appointment Reminder</li>
+      			<li>Voice Recorder</li>
+      		</ul>
+      	</div>
+      	
+      	
+	  	<div id="info">
+	  		
+	  		<h2>Why Sillyio?</h2>
+	  		<p>Because Twilio is silly.</p>
+	  		
+	  		<h2>We Speak Twilio's Language</h2>
+	  		<p>Twilio invented this extremely simple</p>
+	  		
+	  		<h2>We Speak Twilio's Language</h2>
+	  		<p>If you have an existing Twilio application, it should already run with Sillyio.</p>
+	  		
+	  	</div>
+	  	
+		<div id="customer-showcase" class="ui-corner-all">
+			<div id="customer-foo">
+				<h2>Customer Showcase: Blah</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis luctus orci. Morbi non urna ac turpis scelerisque tempus. Proin ut mi at nibh egestas ornare. Pellentesque auctor. Vestibulum sed pede. Curabitur vel felis et nisi ultricies tempor. Pellentesque lacinia. Curabitur a nunc. Fusce semper risus sit amet ante. Praesent laoreet. Praesent iaculis molestie magna. Fusce bibendum augue sed est. Duis eget est vitae risus ornare tincidunt. Curabitur eu libero eu dolor porta volutpat. </p>
+				
+				<p>Praesent non augue.</p>
+			</div>
+			
+			<div id="customer-bar">
+				<h2>Customer Showcase: Blah</h2>
+				<p>Morbi at lacus. Nam eu orci. Morbi pulvinar pulvinar purus. Integer nibh velit, consectetur aliquet, consequat eu, rutrum ut, odio. Proin nibh risus, iaculis ac, dictum sed, suscipit eget, lacus. Donec velit. Aenean non urna quis nisi rutrum vulputate. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean ut leo. Donec quam lorem, lacinia a, ultricies ac, volutpat non, lectus. Aliquam nisl mi, feugiat ut, dapibus laoreet, scelerisque a, quam. Fusce vitae sem. </p>
+				
+				<p>Nam sed dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sit amet nulla sit amet erat euismod molestie.</p>
+			</div>
+			
+			<div id="customer-qaz">
+				<h2>Customer Showcase: Blah</h2>
+				<p>Donec quam lorem, lacinia a, ultricies ac, volutpat non, lectus. Aliquam nisl mi, feugiat ut, dapibus laoreet, scelerisque a, quam. Fusce vitae sem. </p>
+				
+				<p>Suspendisse ut massa. Fusce ac lorem dapibus sem hendrerit laoreet. Curabitur tempor, felis ac interdum tincidunt, arcu nulla tempor ligula, vel aliquam felis sem eu purus. Curabitur ullamcorper rhoncus est. Sed vitae libero. Suspendisse lacinia nunc a ligula. Donec nec lacus. Proin sit amet arcu. Vivamus neque urna, semper eu, gravida vel, faucibus tincidunt, diam. Proin turpis augue, elementum id, iaculis nec, imperdiet ut, eros. Nam luctus, magna sed malesuada facilisis, velit nibh vulputate tortor, sed porta odio nisi eu orci. Aenean ligula. In sagittis. Mauris at leo. Sed sagittis placerat turpis. </p>
+			</div>
+			
+		</div>
+		
+	    <div id="footer">
+	    
+	    	<p>* This statement has not been evaluated by the Drug Enforcement Agency, The Department of Homeland Security, L. Ron Hubbard, or anyone else.</p>
+	    	<p>
+	    </div>
+    
+	  	
       </div>
       
       <div id="how-sillyio-works" class="tab">
@@ -60,6 +146,24 @@
       	<h2>Pricing</h2>
       	
       	<p>Hahah, just kidding! This project is open-source and FREE!</p>
+      	
+      </div>
+      
+      
+      <div id="faq">
+      	<h2>FAQ</h2>
+      	
+      	<p>coming soon</p>
+      	
+      </div>
+      
+      
+      <div id="download">
+      	<h2>Download</h2>
+      	
+      	<p>The entire Sillyio stack is 100% open-source.</p>
+      	
+      	<p>Get it from <a href="http://github.com/jicksta/sillyio">Github</a>
       	
       </div>
       
