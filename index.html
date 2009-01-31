@@ -7,74 +7,66 @@
 
 	<title>jicksta/sillyio @ GitHub</title>
 	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #619199;
-		  font-family: "helvetica"; 
-  		color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #9e6e66; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #9e6e66; }
-    h3 { text-align: center; color: #9e6e66; }
-    a { color: #9e6e66; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
+	  <script src="http://code.jquery.com/jquery-latest.js"></script>
+	  <script type="text/javascript" src="http://ui.jquery.com/testing/ui/ui.core.js"></script>
+	  <script type="text/javascript" src="http://ui.jquery.com/testing/ui/ui.tabs.js"></script>
+	<link rel="stylesheet" href="http://ui.jquery.com/testing/themes/base/ui.all.css" type="text/css">
+
+    <script>
+	  $(document).ready(function(){
+	    $("#tabs").tabs();
+	  });
+  	</script>
+
+	<link rel="stylesheet" type="text/css" href="stylesheets/default.css" media="screen"/>
 	
-</head>
-
-<body>
-  <a href="http://github.com/jicksta/sillyio"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-  
+</head><body>
   <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/jicksta/sillyio/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/jicksta/sillyio/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
+    
+    <p id="top-links">Free Server</p>
+    
+    <div id="tabs">
       
-    <h1><a href="http://github.com/jicksta/sillyio">sillyio</a> 
-      <span class="small">by <a href="http://github.com/jicksta">jicksta</a></small></h1>
-
-    <div class="description">
-      Open-source Twilio clone to show how fucking silly their service is
-    </div>
-
-    <h2>Authors</h2>
-<p>Jay Phillips (jicksta+git@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Jay Phillips (Jicksta@Gmail.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/jicksta/sillyio/zipball/master">zip</a> or
-      <a href="http://github.com/jicksta/sillyio/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/jicksta/sillyio</pre>
-    </p>
+      <ul>
+      	<li><a href="#home">
+      		<!-- <img id="logo" src="images/logo.png" alt="sillyio"/> -->
+      		sillyio
+      	</a></li>
+      	<li><a href="#how-sillyio-works">How sillyio Works</a></li>
+      	<li><a href="#pricing">Pricing</a></li>
+      </ul>
       
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/jicksta/sillyio">jicksta/sillyio</a>
+      <div id="home">
+      	<div id="hype-machine">
+      	
+      		<img src="images/hype.png" id="pretty-icons"/>
+      	
+	      	<div id="clouds-zomgs">
+	      		<h2>Telephony in the Cloud</h2>
+	      		<p>Sillyio is an open-source <a href="http://adhearsion.com">Adhearsion</a> application for voice communications that implements all of Twilio's APIs. Instead of using Twilio, you can launch your own Amazon EC2 image in seconds. Yes, we just re-wrote their entire company and open sourced it. Silly, huh?</p>
+	      	</div>
+      	</div>
+      </div>
+      
+      <div id="how-sillyio-works" class="tab">
+      	<h2>How sillyio Works</h2>
+      	
+      	<p>Adhearsion roxx0rz.</p>
+      	
+      </div>
+      
+      
+      <div id="pricing" class="tab">
+      	<h2>Pricing</h2>
+      	
+      	<p>Hahah, just kidding! This project is open-source and FREE!</p>
+      	
+      </div>
+      
+      
     </div>
+    
     
   </div>
 
-  
-</body>
-</html>
+</body></html>

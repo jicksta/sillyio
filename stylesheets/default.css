@@ -1,0 +1,39 @@
+div#container {
+  width: 900px;
+  font-family: "Lucida Grande", Arial, sans-serif;
+  font-size:  12px;
+  margin: 0 auto;
+}
+p#top-links {
+  font-weight: bold;
+  font-size: 11px;
+  text-align: right;
+}
+
+div#header {
+  background: white url(../images/logo.png) no-repeat ;
+  height: 41px;
+  padding-left: 144px;
+  border: 4px solid black;
+}
+
+.ui-tabs-hide { display: none; }
+
+#hype-machine {
+	
+	height: 300px;
+}
+
+#hype-machine img#pretty-icons {
+
+	float:  left;
+}
+
+#hype-machine div h2 {
+	text-transform: uppercase;
+}
+
+#logo {
+	border: 0;
+	height: 20px;
+}
