@@ -1,3 +1,3 @@
 adhearsion {
-  simon_game
+  sillyio application.url
 }
