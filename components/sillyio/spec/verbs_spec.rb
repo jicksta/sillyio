@@ -7,23 +7,31 @@ unless defined? Adhearsion
     # This file may be ran from the within the Adhearsion framework code (before a project has been generated)
     require File.dirname(__FILE__) + "/../../../../../../lib/adhearsion.rb"
   else
-    require 'rubygems'
-    gem 'adhearsion', '>= 0.7.999'
-    require 'adhearsion'
+    path_to_ahn_file = `which ahn`.chomp
+    p path_to_ahn_file
+    if File.exist?(path_to_ahn_file)
+      require File.dirname(path_to_ahn_file) + "/../lib/adhearsion"
+    else
+      require 'rubygems'
+      gem 'adhearsion', '>= 0.8.1'
+      require 'adhearsion'
+    end
   end
 end
 
-# http://www.twilio.com/docs/api_reference/TwiML
+# Official specification here: http://www.twilio.com/docs/api_reference/TwiML
 
 require 'adhearsion/component_manager/spec_framework'
 
 RESTFUL_RPC = ComponentTester.new("restful_rpc", File.dirname(__FILE__) + "/../..")
 
 describe "Say" do
-  describe '"voice" attribute'
+  
+  describe '"voice" attribute' do
     it "should allow only 'man' and 'woman'"
     it 'should default to "man"'
   end
+  
   describe '"language" attribute' do
     it "should allow only 'en', 'es', 'fr', and 'de'"
     it "should default to 'en'"
@@ -146,6 +154,8 @@ end
 
 describe "Redirect" do
   it "should forward the session state"
+  # it "should default the 'method' to POST" # Docs not clear.
+  it "should raise a TwiMLFormatException if no 'method' attribute is given"
   it "should raise a Redirection exception containing the new URL"
 end
 
