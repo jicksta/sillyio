@@ -17,6 +17,19 @@ div#header {
 
 .ui-tabs-hide { display: none; }
 
+#hype-machine div#clouds-zomgs {
+  background: transparent url(../images/hype-cloud.png) left center no-repeat;
+}
+
+
+#hype-machine div#ahn {
+  background: transparent url(../images/hype-ahn.png) left center no-repeat;
+}
+
+#hype-machine div#aws {
+  background: transparent url(../images/hype-aws.png) left center no-repeat;
+}
+
 #hype-machine div {
 	margin: 40px 0;
 }
