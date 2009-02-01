@@ -9,3 +9,7 @@ store_audio_files_in "tmp"
 account_guid {
   "AC_SILLYIO_#{Process.uid}_#{MD5.md5(`hostname`)}"[0,34]
 }
+
+recording_url_base_path {
+  "http://your_site.com/recordings/"
+}

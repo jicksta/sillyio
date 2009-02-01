@@ -13,6 +13,8 @@ unless defined? Adhearsion
   end
 end
 
+# http://www.twilio.com/docs/api_reference/TwiML
+
 require 'adhearsion/component_manager/spec_framework'
 
 RESTFUL_RPC = ComponentTester.new("restful_rpc", File.dirname(__FILE__) + "/../..")
@@ -56,17 +58,100 @@ describe "Play" do
   
 end
 
+describe "Gather" do
+  describe 'the "action" attribute' do
+    it "should convert a relative URL to an absolute URL"
+    it "should default to the current document URL"
+  end
+  describe 'the "method" attribute' do
+    it 'should allow only "GET" or "POST"'
+    it "should default to POST"
+    it "should raise a TwiMLFormatException if the value is anything else"
+  end
+  describe 'the "timeout" attribute' do
+    it "should default to 5 seconds"
+    it "should raise a TwiMLFormatException if the value is not a positive integer"
+  end
+  
+  describe 'the "finishOnKey" attribute' do
+    it 'should allow the 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, *, "" or # keys'
+    it "should not allow any other keys"
+    it "should strip off the terminator"
+    it "should not allow multiple characters"
+  end
+  
+  describe 'the "numDigits" attribute' do
+    it "should default to unlimited"
+    it "should raise a TwiMLFormatException if the integer is less than 0"
+    it "should riase a TwiMLFormatException if the numDigits is not an integer value"
+  end
+  
+  it 'should redirect to the script specified in "action" by POSTing or GETing the "Digits" to the URL'
+  it 'should redirect to the script specified in "action" when a hangup is encountered during the execution'
+  it "should not redirect if a timeout is encountered"
+  
+end
+
+describe "Record" do
+  
+  describe "The file submission when the recording has completed" do
+    it "should send a properly formatted RecordingUrl"
+    it "should send the duration of the recorded audio file"
+    it "should send the digit used to end the recording"
+    it "should send an empty string for Digits if the timeout was reached"
+  end
+  
+  describe 'the "action" attribute' do
+    it "should default to the current document URL"
+  end
+  
+  describe 'the "method" attribute' do
+    it "should allow only GET or POST"
+    it "should default to POST"
+  end
+  
+  describe 'the "timeout" attribute' do
+    it "should raise a TwiMLFormatException if not a positive integer"
+    it "should default to 5 seconds"
+  end
+  
+  describe 'the "finishOnKey" attribute' do
+    it 'should allow the 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, *, "" or # keys'
+    it "should not allow any other keys"
+    
+    it "should allow multiple characters"
+  end
+  
+  describe 'the "maxLength" attribute' do
+    it "should default to 1 hour (3600 seconds)"
+    it "should raise a TwiMLFormatException if the value is not a positive integer"
+  end
+  
+  it "should keep track of the digit used to end the call and submit it when redirecting to the action as 'Digits'"
+  
+end
 
 describe "Dial" do
+  
   it "should strip any hyphens in the number"
-end
-describe "Redirect" do
-  it "should forward the session state"
-  it "should instantiate a new Sillyio object with the Redirect element's text"
+  
+  it "should not try to submit the outcome of the dial if no action is provided"
+  
+  it "should convert Asterisk DIALSTATUS responses to the appropriate TwiML"
+  
+  describe "Nested Number element(s)" do
+    it "should convert "
+  end
 end
 
-describe "Gather" do
-  
+describe "Redirect" do
+  it "should forward the session state"
+  it "should raise a Redirection exception containing the new URL"
+end
+
+describe "Redirection" do
+  it "should require the URL"
+  it "should optionally allow the storing of HTTP headers"
 end
 
 describe "Pause" do
