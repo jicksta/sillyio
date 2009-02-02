@@ -7,14 +7,9 @@ unless defined? Adhearsion
     # This file may be ran from the within the Adhearsion framework code (before a project has been generated)
     require File.dirname(__FILE__) + "/../../../../../../lib/adhearsion.rb"
   else
-    path_to_ahn_file = `which ahn`.chomp
-    if File.exist?(path_to_ahn_file)
-      require File.dirname(path_to_ahn_file) + "/../lib/adhearsion"
-    else
-      require 'rubygems'
-      gem 'adhearsion', '>= 0.8.1'
-      require 'adhearsion'
-    end
+    require 'rubygems'
+    gem 'adhearsion', '>= 0.8.1'
+    require 'adhearsion'
   end
 end
 
@@ -23,14 +18,28 @@ end
 require 'adhearsion/component_manager/spec_framework'
 
 S = ComponentTester.new("sillyio", File.dirname(__FILE__) + "/../..")
-
+  
 describe "Instantiating a new Sillyio object" do
-  it "should set the call and application_url properties as accessors" do
-    p S::Sillyio
-    call, url = Object.new, "http://example.com"
-    sillyio = S::Sillyio.new(call, url)
-    sillyio.call.should equal(sillyio)
+  
+  include SillyioTestHelper
+  
+  it "should make an accessor of the call object" do
+    call = new_mock_call
+    sillyio = S::Sillyio.new(call, "http://example.com")
+    sillyio.call.should equal(call)
+    
   end
+  
+  it "should convert the URL to a URI object" do
+    url = "http://example.com/#{rand}"
+    sillyio = S::Sillyio.new(new_mock_call, url)
+    
+    sillyio.application.should be_kind_of(URI)
+    sillyio.application.to_s.should eql(url)
+    
+  end
+  
+  
   it "should raise an ArgumentError if the URL given is not a valid HTTP or HTTPS URI"
   
 end
@@ -45,5 +54,12 @@ end
 BEGIN {
   module SillyioTestHelper
 
+    def new_mock_call
+      returning Object.new do |call|
+        stub(call).uniqueid { Time.now.to_f.to_s }
+        stub(call).extension { rand(1000) }
+        stub(call).callerid { "Jay Phillips <144422233333>" }
+      end
+    end
   end
 }

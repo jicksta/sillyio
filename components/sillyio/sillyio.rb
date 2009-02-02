@@ -1,25 +1,23 @@
+require 'md5'
 require 'fileutils'
 require 'base64'
 
 methods_for :rpc do
   def sillyio(application_url)
     Sillyio.new(self, application_url).run
-
-  rescue Sillyio::Redirection
-    
   end
 end
 
 class Sillyio
   
-  attr_reader :application_url, :call, :immediate_call_metadata
-  def initialize(call, application_url)
+  attr_reader :application, :call, :immediate_call_metadata
+  def initialize(call, application)
     @call = call
-    @application_url = URI.parse application_url
+    @application = URI.parse application
     
     # Note: URI::HTTPS is a subclass of URI::HTTP, therefore also valid.
-    unless @application_url.kind_of? URI::HTTP
-      raise ArgumentError, @application_url.inspect + " must be a valid HTTP or HTTPS URL!"
+    unless @application.kind_of? URI::HTTP
+      raise ArgumentError, @application.inspect + " must be a valid HTTP or HTTPS URL!"
     end
     
     # This is the metadata the TwiML spec has us POST to the URL.
@@ -41,7 +39,7 @@ class Sillyio
   protected
   
   def fetch_application
-    @application_content = RestClient.post(application_url, metadata)
+    @application_content = RestClient.post(application, metadata)
   rescue => error
     # TODO
   end
@@ -52,14 +50,8 @@ class Sillyio
   
   def parse_application
     @parsed_application = @lexed_application.root.children.map do |element|
-      if Verbs.const_defined? element.name
-        klass = Verbs.const_get(element.name)
-        case klass
-          when Play
-            url = 
-          else
-            raise NotImplementedError
-        end
+      if Verbs.const_defined? element.name.capitalize
+        Verbs.const_get(element.name).from_hpricot(element)
       else
         invalid_verb! element
       end
@@ -178,36 +170,44 @@ Please check the formatting of your
         end
       end
 
+      attr_reader :encoded_filename, :audio_directory, :sound_file, :temp_audio_file
       def initialize(uri, loop_times=1)
         raise ArgumentError, "First argument must be a URI object!" unless uri.kind_of? URI::HTTP
         @uri = uri
+        
+        @encoded_filename = Base64.b64encode(@uri.to_s).chomp
+        @audio_directory  = COMPONENTS.sillyio["audio_directory"]
+        
+        @sound_file      = File.join(audio_directory, "cached", url_encoded_for_filename)
+        @temp_audio_file = File.join(audio_directory,    "WIP", url_encoded_for_filename)
       end
       
       def prepare
-        url_encoded_for_filename = Base64.b64encode(@uri.to_s).chomp
-        
-        audio_directory = COMPONENTS.sillyio["audio_directory"]
-        cached_audio_file = File.join(audio_directory, "cached", url_encoded_for_filename)
-        temp_audio_file   = File.join(audio_directory,    "WIP", url_encoded_for_filename)
-        
+        return if prepared?
+
         remote_file_metadata = SillyioSupport.head @uri
         
         content_type = remote_file_metadata["content-type"]
         
-        if File.exists?(cached_audio_file) || File.exists?(temp_audio_file)
+        if File.exists?(sound_file) || File.exists?(temp_audio_file)
+          # Note: If the temp file exists in WIP, we'll assume another thread is servicing it and it's effectively
           # TODO: Obey caching headers. If remote file has changed, download it again.
         else
-          # Download the file
+          # Download the file.
           SillyioSupport.download @uri, temp_audio_file
-          FileUtils.mv temp_audio_file, cached_audio_file
+          FileUtils.mv temp_audio_file, sound_file
         end
         
-        @sound_file = cached_audio_file
+        @prepared = true
+      end
+      
+      def prepared?
+        @prepared
       end
       
       def run(call)
-        prepare unless @sound_file
-        call.play @sound_file
+        prepare unless prepared?
+        call.play sound_file
       end
       
     end
