@@ -1,3 +1,5 @@
 .DS_Store
-audio-cache/*
-!audio-cache/README.markdown
+site/public/audio/cached/*
+!site/public/audio/cached/README.txt
+site/public/audio/WIP/*
+!site/public/audio/WIP/README.txt

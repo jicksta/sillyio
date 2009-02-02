@@ -1,27 +1,37 @@
+require 'fileutils'
+require 'base64'
+
 methods_for :rpc do
-  def sillyio(url)
-    Sillyio.new(self, application_url).run!
+  def sillyio(application_url)
+    Sillyio.new(self, application_url).run
+
+  rescue Sillyio::Redirection
+    
   end
 end
-
 
 class Sillyio
   
   attr_reader :application_url, :call, :immediate_call_metadata
   def initialize(call, application_url)
     @call = call
-    @application_url = application_url
+    @application_url = URI.parse application_url
+    
+    # Note: URI::HTTPS is a subclass of URI::HTTP, therefore also valid.
+    unless @application_url.kind_of? URI::HTTP
+      raise ArgumentError, @application_url.inspect + " must be a valid HTTP or HTTPS URL!"
+    end
     
     # This is the metadata the TwiML spec has us POST to the URL.
     @immediate_call_metadata = {
-      "CallGuid"    => "CA#{MD5.md5(uniqueid)}"
+      "CallGuid"    => "CA#{MD5.md5(call.uniqueid)}",
       "Caller"      => call.callerid,
       "Called"      => call.extension,
       "AccountGuid" => "AC_SILLYIO_#{Process.uid}_#{MD5.md5(`hostname`)}"[0,34]
     }
   end
   
-  def run!
+  def run
     fetch_application
     lex_application
     parse_application
@@ -43,7 +53,13 @@ class Sillyio
   def parse_application
     @parsed_application = @lexed_application.root.children.map do |element|
       if Verbs.const_defined? element.name
-        Verbs.const_get(element.name).new(element)
+        klass = Verbs.const_get(element.name)
+        case klass
+          when Play
+            url = 
+          else
+            raise NotImplementedError
+        end
       else
         invalid_verb! element
       end
@@ -51,7 +67,7 @@ class Sillyio
   end
   
   def run_application
-
+    
   end
   
   def metadata
@@ -74,20 +90,127 @@ Please check the formatting of your
     ahn_log.sillyio.error message
     
     raise UnrecognizedVerbException, message
+    
   end
   
+  class TwiMLFormatExpcetion < Exception; end
   class UnrecognizedVerbException < Exception; end
   
+  module SillyioSupport
+    class << self
+      
+      ##
+      # Returns the HTTP headers as a Hash after doing a HTTP HEAD on a URL. All headers are lowercased.
+      #
+      def http_head(uri)
+        # TODO: support HTTP redirects
+        uri = URI.parse uri unless URI.kind_of? URI::HTTP
+        response = Net::HTTP.start(uri.host, uri.port) { |http| http.head uri.path }
+        if response.code_type == Net::HTTPSuccess
+          response.to_hash.inject({}) do |new_response, (header, value)|
+            new_response[header] = value.kind_of?(Array) ? value.first : value
+            new_response
+          end
+        else
+          nil
+        end
+      end
+      
+      def download(source_uri, destination_file)
+        Curl::Easy.download @uri, temp_audio_file
+      end
+    end
+  end
+  
   module Verbs
+    
+    VERB_DEFAULTS = {
+      "Say" => {
+        :voice    => "man",
+        :language => "en",
+        :loop     => "1"
+      },
+      "Play" => {
+        :loop => "1"
+      },
+      "Gather" => {
+        # :action => DYNAMIC! MUST BE SET IN METHOD,
+        :method      => "POST",
+        :timeout     => "5",
+        :finishOnKey => '#',
+        :numDigits   => "0"
+      },
+      "Record" => {
+        # :action    => DYNAMIC! MUST BE SET IN METHOD,
+        :method      => "POST",
+        :timeout     => "5",
+        :finishOnKey => "1234567890*#",
+        :maxlength   => 1.hour 
+      },
+      "Dial" => {
+        # :action     => DYNAMIC! MUST BE SET IN METHOD,
+        :method       => "POST",
+        :timeout      => "30",
+        :hangupOnStar => "false",
+        # :callerId   => DYNAMIC! MUST BE SET IN METHOD,
+        :timeLimit    => "value"
+      },
+      "Redirect" => { :method => "POST" },
+      "Pause"    => { :length =>    "1" },
+      "Hangup"   => {}
+    }
+
+    # http://www.twilio.com/docs/api_reference/TwiML/play
     class Play
+
+      class << self
+        def from_hpricot(element)
+          loop_times = element[:loop]
+          raise TwiMLFormatExpcetion, "Play[loop] must be a positive integer" if loop_times !~ /^\d+$/
+          loop_times = loop_times.to_i
+          
+          file_url = element.innerText.strip
+          uri = URI.parse uri
+          unless uri.kind_of? URI::HTTP
+            raise TwiMLFormatExpcetion, "Play URL #{file_url} is not a valid HTTP URL!"
+          end
+          
+        end
+      end
+
+      def initialize(uri, loop_times=1)
+        raise ArgumentError, "First argument must be a URI object!" unless uri.kind_of? URI::HTTP
+        @uri = uri
+      end
       
-      ALLOWED_CONTENT_TYPES = %w[mpeg wav wave x-wav aiff x-aifc x-aiff x-gsm gsm ulaw ].map { |format| "audio/#{format}" }
-      
-      def initialize(element)
+      def prepare
+        url_encoded_for_filename = Base64.b64encode(@uri.to_s).chomp
         
+        audio_directory = COMPONENTS.sillyio["audio_directory"]
+        cached_audio_file = File.join(audio_directory, "cached", url_encoded_for_filename)
+        temp_audio_file   = File.join(audio_directory,    "WIP", url_encoded_for_filename)
+        
+        remote_file_metadata = SillyioSupport.head @uri
+        
+        content_type = remote_file_metadata["content-type"]
+        
+        if File.exists?(cached_audio_file) || File.exists?(temp_audio_file)
+          # TODO: Obey caching headers. If remote file has changed, download it again.
+        else
+          # Download the file
+          SillyioSupport.download @uri, temp_audio_file
+          FileUtils.mv temp_audio_file, cached_audio_file
+        end
+        
+        @sound_file = cached_audio_file
+      end
+      
+      def run(call)
+        prepare unless @sound_file
+        call.play @sound_file
       end
       
     end
-    
   end
+  
 end

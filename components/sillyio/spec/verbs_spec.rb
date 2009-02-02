@@ -8,7 +8,7 @@ unless defined? Adhearsion
     require File.dirname(__FILE__) + "/../../../../../../lib/adhearsion.rb"
   else
     path_to_ahn_file = `which ahn`.chomp
-    p path_to_ahn_file
+    p ENV["PATH"], path_to_ahn_file
     if File.exist?(path_to_ahn_file)
       require File.dirname(path_to_ahn_file) + "/../lib/adhearsion"
     else
@@ -23,7 +23,7 @@ end
 
 require 'adhearsion/component_manager/spec_framework'
 
-RESTFUL_RPC = ComponentTester.new("restful_rpc", File.dirname(__FILE__) + "/../..")
+RESTFUL_RPC = ComponentTester.new("sillyio", File.dirname(__FILE__) + "/../..")
 
 describe "Say" do
   
@@ -63,6 +63,8 @@ describe "Play" do
     it "should raise an TwiMLFormatException if the value is negative"
     it "should raise an TwiMLFormatException if the value not an integer"
   end
+  
+  it "should download the file to a base64 encoded form of the URL"
   
 end
 
