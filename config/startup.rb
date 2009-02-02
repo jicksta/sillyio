@@ -10,18 +10,6 @@ unless defined? Adhearsion
   end
 end
 
-begin
-  require 'rest_client'
-rescue LoadError
-  abort "Sillyio depends on the RestClient gem. Please install it by doing 'sudo gem install rest-client'"
-end
-
-begin
-  require 'hpricot'
-rescue LoadError
-  abort "Sillyio depends on the Hpricot gem. Please install it by doing 'sudo gem install hpricot'. Note: you must have the Ruby development headers installed because Hpricot depends upon a natively-compiled library for parsing XML efficiently."
-end
-
 Adhearsion::Configuration.configure do |config|
 
   # Supported levels (in increasing severity) -- :debug < :info < :warn < :error < :fatal

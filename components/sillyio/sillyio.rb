@@ -2,13 +2,33 @@ require 'md5'
 require 'fileutils'
 require 'base64'
 
+begin
+  require 'rest_client'
+rescue LoadError
+  abort "Sillyio depends on the RestClient gem. Please install it by doing 'sudo gem install rest-client'"
+end
+
+begin
+  require 'hpricot'
+rescue LoadError
+  abort "Sillyio depends on the Hpricot gem. Please install it by doing 'sudo gem install hpricot'. Note: you must have the Ruby development headers installed because Hpricot depends upon a natively-compiled library for parsing XML efficiently."
+end
+
 methods_for :rpc do
   def sillyio(application_url)
     Sillyio.new(self, application_url).run
+  rescue TwiMLFormatException => format_error
+    ahn_log.sillyio.error format_error
   end
 end
 
 class Sillyio
+  
+  class << self
+    def account_guid
+      @@account_guid ||= "AC_SILLYIO_#{Process.uid}_#{MD5.md5(`hostname`)}"[0,34]
+    end
+  end
   
   attr_reader :application, :call, :immediate_call_metadata
   def initialize(call, application)
@@ -25,8 +45,9 @@ class Sillyio
       "CallGuid"    => "CA#{MD5.md5(call.uniqueid)}",
       "Caller"      => call.callerid,
       "Called"      => call.extension,
-      "AccountGuid" => "AC_SILLYIO_#{Process.uid}_#{MD5.md5(`hostname`)}"[0,34]
+      "AccountGuid" => self.class.account_guid
     }
+    
   end
   
   def run
@@ -39,27 +60,38 @@ class Sillyio
   protected
   
   def fetch_application
-    @application_content = RestClient.post(application, metadata)
+    @application_content ||= RestClient.post(application, metadata)
   rescue => error
     # TODO
   end
   
-  def lexed_application
-    @lexed_application = Hpricot.XML @application_content
+  def lex_application
+    @lexed_application ||= begin
+      doc = Hpricot.XML @application_content
+      response = doc.at "Response"
+      raise TwiMLFormatException, "No <Response> element!" unless response
+      response.children
+    end
   end
   
   def parse_application
-    @parsed_application = @lexed_application.root.children.map do |element|
+    p @lexed_application
+    @parsed_application ||= @lexed_application.map do |element|
+      next if element.is_a? Hpricot::Text
       if Verbs.const_defined? element.name.capitalize
         Verbs.const_get(element.name).from_hpricot(element)
       else
         invalid_verb! element
       end
-    end
+    end.compact
   end
   
   def run_application
-    
+    @parsed_application.each do |verb|
+      # TODO: Prepare verbs in parallel
+      verb.prepare
+      verb.run @call
+    end
   end
   
   def metadata
@@ -85,7 +117,7 @@ Please check the formatting of your
     
   end
   
-  class TwiMLFormatExpcetion < Exception; end
+  class TwiMLFormatException < Exception; end
   class UnrecognizedVerbException < Exception; end
   
   module SillyioSupport
@@ -151,22 +183,23 @@ Please check the formatting of your
       "Pause"    => { :length =>    "1" },
       "Hangup"   => {}
     }
-
+    
     # http://www.twilio.com/docs/api_reference/TwiML/play
     class Play
 
       class << self
         def from_hpricot(element)
-          loop_times = element[:loop]
-          raise TwiMLFormatExpcetion, "Play[loop] must be a positive integer" if loop_times !~ /^\d+$/
+          attributes = VERB_DEFAULTS["Play"].merge element.attributes.symbolize_keys
+          loop_times = attributes[:loop]
+          raise TwiMLFormatException, "Play[loop] must be a positive integer" if loop_times !~ /^\d+$/
           loop_times = loop_times.to_i
           
           file_url = element.innerText.strip
-          uri = URI.parse uri
+          uri = URI.parse file_url
           unless uri.kind_of? URI::HTTP
-            raise TwiMLFormatExpcetion, "Play URL #{file_url} is not a valid HTTP URL!"
+            raise TwiMLFormatException, "Play URL #{file_url} is not a valid HTTP URL!"
           end
-          
+          new(uri, loop_times)
         end
       end
 
@@ -211,6 +244,26 @@ Please check the formatting of your
       end
       
     end
+  
+    class Gather
+      
+      class << self
+        def from_hpricot(element)
+          new
+        end
+      end
+      
+      def initialize
+      end
+      
+      def prepare
+      end
+      
+      def run
+      end
+      
+    end
+  
   end
   
 end

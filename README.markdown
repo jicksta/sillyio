@@ -13,11 +13,12 @@ TODO
 ------
 * Put in place several events.rb hooks
 * Automatically upload recordings to S3
-
+* See if DNIS works for the "Called" property.
+* AMD
 Notes
 -----
 I'm almost certain Twilio uses Asterisk behind the scenes. Things such as <Dial>'s hangupOnStar and <Number>'s sendDigits are a dead giveaway.
-  
+
 
 
 <code>
