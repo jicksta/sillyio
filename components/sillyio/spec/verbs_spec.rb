@@ -293,6 +293,9 @@ describe "Pause" do
       S::Sillyio::Verbs::Pause.from_xml_element(xml_element)
     end.should raise_error(S::Sillyio::TwiMLFormatException)
   end
+  it "should default the pause length to 1 second" do
+    S::Sillyio::Verbs::Pause.from_xml_element(XML::Node.new("Pause")).sleep_time.should equal(1)
+  end
 end
 
 describe "Hangup" do

@@ -337,7 +337,7 @@ class Sillyio
     class Pause < AbstractVerb
       class << self
         def from_xml_element(element)
-          attributes = VERB_DEFAULTS["Play"].merge element.attributes.to_h.symbolize_keys
+          attributes = attributes_from_xml_element element
           length = attributes[:length]
           raise TwiMLFormatException, 'Invalid <Pause> "length" attribute!' if length !~ /^[1-9]\d*$/
           new length.to_i
