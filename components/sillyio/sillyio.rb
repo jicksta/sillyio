@@ -82,14 +82,14 @@ class Sillyio
   protected
   
   def fetch_application
-    @application_content ||= RestClient.post(application.to_s, metadata)
+    @application_content = RestClient.post(application.to_s, metadata)
   rescue => error
     ahn_log.sillyio.error error
     raise TwiMLDownloadException, "Could not fetch #@application"
   end
   
   def lex_application
-    @lexed_application ||= begin
+    @lexed_application = begin
       doc = XML::Parser.string(@application_content).parse 
       
       # Make sure the document has a <Response> root
@@ -107,7 +107,7 @@ class Sillyio
   
   def parse_application
     # Check all Verb names
-    @parsed_application ||= @lexed_application.map do |element|
+    @parsed_application = @lexed_application.map do |element|
       Verbs.const_get(element.name).from_xml_element element
     end
   end
