@@ -201,37 +201,58 @@ class Sillyio
       "Hangup"   => {}
     }
     
+    class AbstractVerb
+      class << self
+        def attributes_from_xml_element(element)
+          VERB_DEFAULTS[name[/::([^:]+)$/,1]].merge((element.attributes.to_h || {}).symbolize_keys)
+        end
+      end
+    end
+    
     # http://www.twilio.com/docs/api_reference/TwiML/play
-    class Play
+    class Play < AbstractVerb
 
       class << self
         def from_xml_element(element)
-          attributes = VERB_DEFAULTS["Play"].merge element.attributes.to_h.symbolize_keys
+          attributes = attributes_from_xml_element element
+          
+          loop_times = extract_loop_attribute attributes
+          
+          # Pull out the text within the element
+          file_url = element.content.strip
+          
+          # Make sure a URL was given
+          raise TwiMLFormatException, "No file URL given!" if file_url.empty?
+          
+          uri = URI.parse file_url
+          
+          # Must be a HTTP or HTTPS URI.
+          raise TwiMLFormatException, "Play URL #{file_url} is not a valid HTTP URL!" unless uri.kind_of? URI::HTTP
+          
+          new(uri, loop_times)
+        end
+        
+        protected
+
+        def extract_loop_attribute(attributes)
           loop_times = attributes[:loop]
           raise TwiMLFormatException, "Play[loop] must be a positive integer" if loop_times !~ /^\d+$/
           loop_times = loop_times.to_i
-          
-          file_url = element.content.strip
-          uri = URI.parse file_url
-          unless uri.kind_of? URI::HTTP
-            raise TwiMLFormatException, "Play URL #{file_url} is not a valid HTTP URL!"
-          end
-          new(uri, loop_times)
         end
+
       end
 
-      attr_reader :encoded_filename, :audio_directory, :sound_file, :temp_sound_file
+      attr_reader :encoded_filename, :audio_directory, :sound_file, :temp_sound_file, :loop_times
       def initialize(uri, loop_times=1)
         raise ArgumentError, "First argument must be a URI object!" unless uri.kind_of? URI::HTTP
         @uri = uri
+        @loop_times = loop_times
         
         @encoded_filename = Base64.encode64(@uri.to_s).gsub("\n", "")
         @audio_directory  = COMPONENTS.sillyio["audio_directory"]
       end
       
       def prepare
-        return if prepared?
-
         remote_file_metadata = SillyioSupport.http_head @uri
         
         raise TwiMLDownloadException, "Could not do a HEAD on #{@uri}" unless remote_file_metadata
@@ -262,19 +283,18 @@ class Sillyio
         @prepared = true
       end
       
-      def prepared?
-        @prepared
-      end
-      
       def run(call)
-        prepare unless prepared?
-        call.play @sound_file_name
+        if loop_times.zero?
+          loop { call.play @sound_file_name }
+        else
+          loop_times.times { call.play @sound_file_name }
+        end
       end
       
     end
   
     # http://www.twilio.com/docs/api_reference/TwiML/gather
-    class Gather
+    class Gather < AbstractVerb
       
       class << self
         def from_xml_element(element)
@@ -294,7 +314,7 @@ class Sillyio
     end
   
     # http://www.twilio.com/docs/api_reference/TwiML/pause
-    class Pause
+    class Pause < AbstractVerb
       class << self
         def from_xml_element(element)
           attributes = VERB_DEFAULTS["Play"].merge element.attributes.to_h.symbolize_keys
@@ -316,7 +336,7 @@ class Sillyio
     end
     
     # http://www.twilio.com/docs/api_reference/TwiML/pause
-    class Hangup
+    class Hangup < AbstractVerb
       class << self
         def from_xml_element(element)
           raise TwiMLFormatException, "<Hangup> requires no attributes!" unless element.attributes.length.zero?

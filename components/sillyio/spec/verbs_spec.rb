@@ -33,16 +33,54 @@ describe "Play" do
     
     %w[audio/mpeg audio/wav audio/wave audio/x-wav audio/aiff audio/x-aifc
         audio/x-aiff audio/x-gsm audio/gsm audio/ulaw].each do |content_type|
-      it "should allow #{content_type}"
+      it "should allow the #{content_type} content type"
     end
     it "should not allow other Content-Types"
   end  
   
   describe 'The "loop" attribute' do
-    it "should invoke loop() if the value is zero"
-    it "should invoke Fixnum#times if the value is greater than zero"
-    it "should raise an TwiMLFormatException if the value is negative"
-    it "should raise an TwiMLFormatException if the value not an integer"
+    it "should invoke loop() if the value is zero (for unlimited)" do
+      sound_file = "http://example.com/example.wav"
+      verb = S::Sillyio::Verbs::Play.new(URI.parse(sound_file), 0)
+      mock(verb).loop { throw :looped! }
+      
+      call = new_mock_call
+      
+      stub_actual_fetching
+      
+      verb.prepare
+      lambda { verb.run(call) }.should throw_symbol(:looped!)
+    end
+    it "should invoke play a given number of times if number greater than 1 is given" do
+      times = 12
+      sound_file = "http://example.com/example.wav"
+      
+      verb = S::Sillyio::Verbs::Play.new(URI.parse(sound_file), times)
+      
+      call = new_mock_call
+      mock(call).play(is_a(String)).times(times)
+      
+      stub_actual_fetching
+      
+      verb.prepare
+      verb.run(call)
+    end
+    it "should raise an TwiMLFormatException if the value is negative" do
+      xml_element = XML::Node.new("Play")
+      xml_element["loop"] = "-4"
+      xml_element << "http://x.gd/x.wav"
+      lambda do
+        verb = S::Sillyio::Verbs::Play.from_xml_element xml_element
+      end.should raise_error(S::Sillyio::TwiMLFormatException)
+    end
+    it "should raise an TwiMLFormatException if the value not an integer" do
+      xml_element = XML::Node.new("Play")
+      xml_element["loop"] = "sexypants"
+      xml_element << "http://x.gd/x.wav"
+      lambda do
+        verb = S::Sillyio::Verbs::Play.from_xml_element xml_element
+      end.should raise_error(S::Sillyio::TwiMLFormatException)
+    end
   end
   
   it "should download the file to a base64 encoded form of the URL" do
@@ -58,6 +96,12 @@ describe "Play" do
     mock(FileUtils).mv(is_a(String), is_a(String))
     play.prepare
     play.sound_file.ends_with?("/#{filename}").should equal(true)
+  end
+  
+  def stub_actual_fetching(content_type="audio/x-gsm")
+    stub(S::Sillyio::SillyioSupport).http_head(is_a(URI::HTTP)) { {"content-type" => content_type} }
+    stub(S::Sillyio::SillyioSupport).download(is_a(String), is_a(String))
+    stub(FileUtils).mv(is_a(String), is_a(String))
   end
   
 end
