@@ -239,7 +239,7 @@ class Sillyio
         content_type = remote_file_metadata["content-type"]
         
         unless RECOGNIZED_SOUND_FORMATS.include? content_type
-          raise TwiMLDownloadException, "Audio file does not have a valid Content-Type!" 
+          raise TwiMLDownloadException, "Audio file does not have a valid Content-Type! (#{content_type})" 
         end
         
         file_extension = content_type[/^audio\/(.+)$/, 1]
