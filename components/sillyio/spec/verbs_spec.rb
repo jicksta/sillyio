@@ -205,15 +205,64 @@ describe "Dial" do
 end
 
 describe "Redirect" do
-  it "should forward the session state"
-  # it "should default the 'method' to POST" # Docs not clear.
-  it "should raise a TwiMLFormatException if no 'method' attribute is given"
-  it "should raise a Redirection exception containing the new URL"
+  
+  # I had to clarify this with the 
+  it "should default the 'method' to POST when no method is given" do
+    xml_element = XML::Node.new("Redirect")
+    xml_element << "http://example.com"
+    S::Sillyio::Verbs::Redirect.from_xml_element(xml_element).http_method.should eql("post")
+  end
+  
+  it "should raise a TwiMLFormatException if the specified 'method' is not GET or POST" do
+    xml_element = XML::Node.new("Redirect")
+    xml_element["method"] = "head"
+    xml_element << "http://example.com"
+    lambda do
+      S::Sillyio::Verbs::Redirect.from_xml_element(xml_element)
+    end.should raise_error(S::Sillyio::TwiMLFormatException)
+  end
+  
+  
+  it "should allow a Symbol for the method" do
+    lambda do
+      S::Sillyio::Verbs::Redirect.new("http://example.com", :post)
+    end.should_not raise_error
+  end
+  
+  it "should raise a TwiMLFormatException if no URL is given" do
+    lambda do
+      S::Sillyio::Verbs::Redirect.from_xml_element XML::Node.new("Redirect")
+    end.should raise_error(S::Sillyio::TwiMLFormatException)
+  end
+  
+  it "should raise a Redirection exception containing the new URL, the method, and any new headers when ran" do
+    uri = "http://google.com"
+    method = "post"
+    
+    xml_element = XML::Node.new("Redirect")
+    xml_element << uri
+    xml_element["method"] = method
+    
+    begin
+      S::Sillyio::Verbs::Redirect.from_xml_element(xml_element).run
+    rescue S::Sillyio::Redirection => redirect
+      redirect.uri.to_s.should eql(uri)
+      redirect.method.should eql(method)
+    else
+      fail "No Redirection exception raised!"
+    end
+  end
+  
 end
 
 describe "Redirection" do
-  it "should require the URL"
-  it "should optionally allow the storing of HTTP headers"
+  
+  include SillyioTestHelper
+  
+  it "should convert a String URL into a URI::HTTP object" do
+    S::Sillyio::Redirection.new("http://example.com", :post).uri.should be_kind_of(URI::HTTP)
+  end
+  
 end
 
 describe "Pause" do

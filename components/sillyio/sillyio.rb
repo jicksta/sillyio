@@ -30,6 +30,7 @@ end
 
 
 methods_for :dialplan do
+  
   def sillyio(application_url)
     Sillyio.new(self, application_url).run
   rescue Sillyio::TwiMLFormatException => format_error
@@ -37,6 +38,7 @@ methods_for :dialplan do
   rescue Sillyio::TwiMLDownloadException => download_error
     ahn_log.sillyio.error "DOWNLOAD ERROR! #{download_error.message}"
   end
+  
 end
 
 class Sillyio
@@ -72,6 +74,9 @@ class Sillyio
     lex_application
     parse_application
     run_application
+  rescue Redirection => redirection
+    @application = redirection.uri
+    retry
   end
   
   protected
@@ -113,6 +118,7 @@ class Sillyio
       verb.prepare if verb.respond_to? :prepare
       verb.run @call
     end
+    retry
   end
   
   def metadata
@@ -121,6 +127,20 @@ class Sillyio
   
   def location_data
     {}
+  end
+  
+  class Redirection < Exception
+    
+    attr_reader :uri, :params, :method
+    def initialize(uri, method, params={})
+      method = method.to_s.downcase
+      raise ArgumentError, "Unrecognized method #{method}" unless %w[post get].include? method
+      @uri    = uri.kind_of?(String) ? URI.parse(uri) : uri
+      @method = method
+      @params = params
+      super()
+    end
+    
   end
   
   class TwiMLDownloadException < Exception; end
@@ -347,6 +367,36 @@ class Sillyio
       
       def run(call)
         call.hangup
+      end
+      
+    end
+  
+    class Redirect < AbstractVerb
+      
+      class << self
+        def from_xml_element(element)
+          attributes = attributes_from_xml_element element
+          method = attributes[:method].downcase
+          raise TwiMLFormatException, "Redirect method must be GET or HEAD" unless %w[get post].include? method
+          
+          raise TwiMLFormatException, "No URL given to <Redirect>!" unless element.first?
+          uri = element.content
+          
+          new(uri, method)
+        end
+      end
+      
+      attr_reader :redirection, :http_method
+      def initialize(uri, method)
+        @http_method = method.to_s.downcase
+        raise ArgumentError, "Unrecognized method #{method}" unless %w[post get].include? @http_method
+        @uri = uri
+        
+        @redirection = Redirection.new(uri, @http_method)
+      end
+      
+      def run
+        raise @redirection
       end
       
     end
