@@ -118,7 +118,6 @@ class Sillyio
       verb.prepare if verb.respond_to? :prepare
       verb.run @call
     end
-    retry
   end
   
   def metadata
