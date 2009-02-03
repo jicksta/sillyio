@@ -191,6 +191,33 @@ describe "Pause" do
 end
 
 describe "Hangup" do
-  it "should execute the Adhearsion hangup() method"
-  it "should raise a TwiMLFormatException if element has any innerText or attributes"
+  
+  include SillyioTestHelper
+  
+  before :each do
+    initialize_configuration
+  end
+  
+  it "should execute the Adhearsion hangup() method" do
+    call = new_mock_call
+    mock(call).hangup
+    S::Sillyio::Verbs::Hangup.new.run(call)
+  end
+  
+  it "should raise a TwiMLFormatException if element has any attributes" do
+    xml_element = XML::Node.new("Hangup")
+    xml_element["length"] = "1"
+    lambda do
+      S::Sillyio::Verbs::Hangup.from_xml_element(xml_element).run(new_mock_call)
+    end.should raise_error(S::Sillyio::TwiMLFormatException)
+  end
+  
+  it "should raise a TwiMLFormatException if element has any children" do
+    xml_element = XML::Node.new("Hangup")
+    xml_element << "blah"
+    lambda do
+      S::Sillyio::Verbs::Hangup.from_xml_element(xml_element).run(new_mock_call)
+    end.should raise_error(S::Sillyio::TwiMLFormatException)
+  end
+  
 end

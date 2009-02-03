@@ -314,6 +314,22 @@ class Sillyio
       end
       
     end
+    
+    # http://www.twilio.com/docs/api_reference/TwiML/pause
+    class Hangup
+      class << self
+        def from_xml_element(element)
+          raise TwiMLFormatException, "<Hangup> requires no attributes!" unless element.attributes.length.zero?
+          raise TwiMLFormatException, "<Hangup> can have no children!" unless element.empty?
+          new
+        end
+      end
+      
+      def run(call)
+        call.hangup
+      end
+      
+    end
   
   end
   
