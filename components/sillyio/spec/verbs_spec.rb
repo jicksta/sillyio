@@ -33,9 +33,21 @@ describe "Play" do
     
     %w[audio/mpeg audio/wav audio/wave audio/x-wav audio/aiff audio/x-aifc
         audio/x-aiff audio/x-gsm audio/gsm audio/ulaw].each do |content_type|
-      it "should allow the #{content_type} content type"
+      it "should allow the #{content_type} content type" do
+        stub_actual_fetching content_type
+        verb = S::Sillyio::Verbs::Play.new(URI.parse("http://example.com"))
+        lambda do
+          verb.prepare
+        end.should_not raise_error(S::Sillyio::TwiMLFormatException)
+      end
     end
-    it "should not allow other Content-Types"
+    it "should not allow other Content-Types" do
+      stub_actual_fetching "x-blahh"
+      verb = S::Sillyio::Verbs::Play.new(URI.parse("http://example.com"))
+      lambda do
+        verb.prepare
+      end.should raise_error(S::Sillyio::TwiMLDownloadException)
+    end
   end  
   
   describe 'The "loop" attribute' do
