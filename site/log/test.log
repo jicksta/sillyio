@@ -1,0 +1,115 @@
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:29:29', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:29:29')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:32:24', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:32:24')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateIncomings (20090202232341)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("incomings")[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:39:16', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:39:16')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:43:48', 'http://www.konectas.com/calls/inbound_start', NULL, '2009-02-02 23:43:48')[0m
+  [4;35;1mIncoming Create (0.5ms)[0m   [0mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:43:48', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:43:48')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:44:15', 'http://www.konectas.com/calls/inbound_start', NULL, '2009-02-02 23:44:15')[0m
+  [4;35;1mIncoming Create (0.5ms)[0m   [0mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:44:15', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:44:15')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:44:29', 'http://www.konectas.com/calls/inbound_start', NULL, '2009-02-02 23:44:29')[0m
+  [4;35;1mIncoming Create (0.5ms)[0m   [0mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:44:29', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:44:29')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:44:48', 'http://www.konectas.com/calls/inbound_start', NULL, '2009-02-02 23:44:48')[0m
+  [4;35;1mIncoming Create (0.4ms)[0m   [0mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:44:48', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:44:48')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:45:31', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:45:31')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:49:36', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:49:36')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:50:09', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:50:09')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:53:42', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:53:42')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:54:43', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:54:43')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:54:55', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:54:55')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-02 23:59:46', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-02 23:59:46')[0m
+  [4;36;1mIncoming Create (0.8ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:01:02', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:01:02')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:03:49', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:03:49')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:05:54', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:05:54')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:06:31', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:06:31')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:07:24', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:07:24')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:09:18', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:09:18')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:09:38', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:09:38')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:10:09', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:10:09')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:11:27', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:11:27')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:11:41', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:11:41')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:11:53', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:11:53')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:16:18', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:16:18')[0m
+  [4;36;1mIncoming Create (0.6ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:16:40', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:16:40')[0m
+  [4;36;1mIncoming Create (0.5ms)[0m   [0;1mINSERT INTO "incomings" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 00:16:56', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 00:16:56')[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateIncomings (20090202232341)
+  [4;36;1mSQL (49.4ms)[0m   [0;1mDROP TABLE "incomings"[0m
+  [4;35;1mSQL (2.9ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090202232341'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateRouteRules (20090202232341)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (49.8ms)[0m   [0mCREATE TABLE "route_rules" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "did" varchar(10), "url" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090202232341')[0m
+  [4;35;1mSQL (0.8ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("route_rules")[0m
