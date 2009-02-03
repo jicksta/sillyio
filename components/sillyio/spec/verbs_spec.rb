@@ -161,9 +161,33 @@ describe "Redirection" do
 end
 
 describe "Pause" do
-  it "should sleep for the number of seconds specified in the 'length' property"
-  it "should raise an TwiMLFormatException if the length attribute is not an integer"
-  it "should raise an TwiMLFormatException if the length attribute is negative"
+  
+  include SillyioTestHelper
+  
+  before :each do
+    initialize_configuration
+  end
+  
+  it "should sleep for the number of seconds specified in the 'length' property" do
+    length = 3
+    verb = S::Sillyio::Verbs::Pause.new(length)
+    mock(verb).sleep length
+    verb.run(new_mock_call)
+  end
+  it "should raise an TwiMLFormatException if the length attribute is not an integer" do
+    xml_element = XML::Node.new("Pause")
+    xml_element["length"] = "jay"
+    lambda do
+      S::Sillyio::Verbs::Pause.from_xml_element(xml_element)
+    end.should raise_error(S::Sillyio::TwiMLFormatException)
+  end
+  it "should raise an TwiMLFormatException if the length attribute is negative" do
+    xml_element = XML::Node.new("Pause")
+    xml_element["length"] = "-1"
+    lambda do
+      S::Sillyio::Verbs::Pause.from_xml_element(xml_element)
+    end.should raise_error(S::Sillyio::TwiMLFormatException)
+  end
 end
 
 describe "Hangup" do

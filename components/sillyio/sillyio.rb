@@ -110,7 +110,7 @@ class Sillyio
   def run_application
     @parsed_application.each do |verb|
       # TODO: Prepare verbs in parallel
-      verb.prepare
+      verb.prepare if verb.respond_to? :prepare
       verb.run @call
     end
   end
@@ -273,6 +273,7 @@ class Sillyio
       
     end
   
+    # http://www.twilio.com/docs/api_reference/TwiML/gather
     class Gather
       
       class << self
@@ -288,6 +289,28 @@ class Sillyio
       end
       
       def run
+      end
+      
+    end
+  
+    # http://www.twilio.com/docs/api_reference/TwiML/pause
+    class Pause
+      class << self
+        def from_xml_element(element)
+          attributes = VERB_DEFAULTS["Play"].merge element.attributes.to_h.symbolize_keys
+          length = attributes[:length]
+          raise TwiMLFormatException, 'Invalid <Pause> "length" attribute!' if length !~ /^[1-9]\d*$/
+          new length.to_i
+        end
+      end
+      
+      attr_reader :sleep_time
+      def initialize(length)
+        @sleep_time = length
+      end
+      
+      def run(call)
+        sleep sleep_time
       end
       
     end
