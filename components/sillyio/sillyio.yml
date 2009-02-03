@@ -14,4 +14,4 @@
 #   "http://your_site.com/recordings/"
 # }
 
-audio_directory "site/public/audio"
+audio_directory: site/public/audio

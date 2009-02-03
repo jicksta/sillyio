@@ -21,11 +21,13 @@ rescue LoadError
 end
 
 
-methods_for :rpc do
+methods_for :dialplan do
   def sillyio(application_url)
     Sillyio.new(self, application_url).run
-  rescue TwiMLFormatException => format_error
+  rescue Sillyio::TwiMLFormatException => format_error
     ahn_log.sillyio.error format_error
+  rescue Sillyio::TwiMLDownloadException => download_error
+    ahn_log.sillyio.error "DOWNLOAD ERROR! #{download_error.message}"
   end
 end
 
@@ -49,7 +51,7 @@ class Sillyio
     
     # This is the metadata the TwiML spec has us POST to the URL.
     @immediate_call_metadata = {
-      "CallGuid"    => "CA#{MD5.md5(call.uniqueid)}",
+      "CallGuid"    => "CA#{MD5.md5(call.uniqueid.to_s)}",
       "Caller"      => call.callerid,
       "Called"      => call.extension,
       "AccountGuid" => self.class.account_guid
@@ -67,9 +69,10 @@ class Sillyio
   protected
   
   def fetch_application
-    @application_content ||= RestClient.post(application, metadata)
+    @application_content ||= RestClient.post(application.to_s, metadata)
   rescue => error
-    # TODO
+    ahn_log.sillyio.error error
+    raise TwiMLDownloadException, "Could not fetch #@application"
   end
   
   def lex_application
@@ -112,6 +115,8 @@ class Sillyio
     {}
   end
   
+  class TwiMLDownloadException < Exception; end
+  
   class TwiMLFormatException < Exception; end
   class TwiMLSyntaxException < TwiMLFormatException; end
   
@@ -128,10 +133,10 @@ class Sillyio
       # Returns the HTTP headers as a Hash after doing a HTTP HEAD on a URL. All headers are lowercased.
       #
       def http_head(uri)
-        # TODO: support HTTP redirects
-        uri = URI.parse uri unless URI.kind_of? URI::HTTP
+        # TODO: Use recursion to support HTTP redirects
+        uri = URI.parse uri unless uri.kind_of? URI::HTTP
         response = Net::HTTP.start(uri.host, uri.port) { |http| http.head uri.path }
-        if response.code_type == Net::HTTPSuccess
+        if response.kind_of? Net::HTTPOK
           response.to_hash.inject({}) do |new_response, (header, value)|
             new_response[header] = value.kind_of?(Array) ? value.first : value
             new_response
@@ -212,14 +217,16 @@ class Sillyio
         @encoded_filename = Base64.encode64(@uri.to_s).chomp
         @audio_directory  = COMPONENTS.sillyio["audio_directory"]
         
-        @sound_file      = File.join(@audio_directory, "cached", @encoded_filename)
-        @temp_audio_file = File.join(@audio_directory,    "WIP", @encoded_filename)
+        @sound_file      = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}"
+        @temp_audio_file = File.expand_path "#{@audio_directory}/WIP/#{@encoded_filename}"
       end
       
       def prepare
         return if prepared?
 
         remote_file_metadata = SillyioSupport.http_head @uri
+        
+        raise TwiMLDownloadException, "Could not do a HEAD on #{@uri}" unless remote_file_metadata
         
         content_type = remote_file_metadata["content-type"]
         
@@ -228,7 +235,7 @@ class Sillyio
           # TODO: Obey caching headers. If remote file has changed, download it again.
         else
           # Download the file.
-          SillyioSupport.download @uri, temp_audio_file
+          SillyioSupport.download @uri.to_s, temp_audio_file
           FileUtils.mv temp_audio_file, sound_file
         end
         

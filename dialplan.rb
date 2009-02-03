@@ -1,3 +1,3 @@
-adhearsion {
-  sillyio "http://www.twilio.com/resources/code/demos/helloworld/index.xml"
+sandbox {
+  sillyio "http://sillyio.com/testing/play-hello-world.xml"
 }
