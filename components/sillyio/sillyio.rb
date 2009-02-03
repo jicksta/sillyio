@@ -220,7 +220,7 @@ class Sillyio
         end
       end
 
-      attr_reader :encoded_filename, :audio_directory, :sound_file, :temp_audio_file
+      attr_reader :encoded_filename, :audio_directory, :sound_file, :temp_sound_file
       def initialize(uri, loop_times=1)
         raise ArgumentError, "First argument must be a URI object!" unless uri.kind_of? URI::HTTP
         @uri = uri
@@ -244,16 +244,19 @@ class Sillyio
         
         file_extension = content_type[/^audio\/(x-)?(.+)$/, 2]
         
-        @sound_file      = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}.#{file_extension}"
-        @temp_audio_file = File.expand_path "#{@audio_directory}/WIP/#{@encoded_filename}.#{file_extension}"
+        # Cannot give extension to Asterisk
+        @sound_file_name = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}"
         
-        if File.exists?(sound_file) || File.exists?(temp_audio_file)
+        @sound_file        = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}.#{file_extension}"
+        @temp_sound_file   = File.expand_path "#{@audio_directory}/WIP/#{@encoded_filename}.#{file_extension}"
+        
+        if File.exists?(sound_file) || File.exists?(temp_sound_file)
           # Note: If the temp file exists in WIP, we'll assume another thread is servicing it and it's effectively
           # TODO: Obey caching headers. If remote file has changed, download it again.
         else
           # Download the file.
-          SillyioSupport.download @uri.to_s, temp_audio_file
-          FileUtils.mv temp_audio_file, sound_file
+          SillyioSupport.download @uri.to_s, temp_sound_file
+          FileUtils.mv temp_sound_file, sound_file
         end
         
         @prepared = true
@@ -265,7 +268,7 @@ class Sillyio
       
       def run(call)
         prepare unless prepared?
-        call.play sound_file
+        call.play @sound_file_name
       end
       
     end
