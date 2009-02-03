@@ -1,5 +1,6 @@
 # Official specification here: http://www.twilio.com/docs/api_reference/TwiML
 require File.dirname(__FILE__) + "/spec_helper"
+
 describe "Instantiating a new Sillyio object" do
   
   include SillyioTestHelper
@@ -80,6 +81,14 @@ describe "Executing a TwiML resource" do
         sillyio.send :lex_application
       end.should raise_error(S::Sillyio::TwiMLFormatException)
     end
+    
+    it "should raise a TwiMLSyntaxException if the document is invalid XML" do
+      sillyio = S::Sillyio.new(new_mock_call, 'http://example.com')
+      sillyio.send(:instance_variable_set, :@application_content, "<<ASNDASND")
+      lambda do
+        sillyio.send :lex_application
+      end.should raise_error(S::Sillyio::TwiMLSyntaxException)
+    end
   end
   
   describe "Parsing the TwiML resource" do
@@ -104,23 +113,43 @@ describe "Executing a TwiML resource" do
   end
   
   describe "Running the TwiML resource" do
-    it "should prepare() all of the verbs" do
-      
-    end
+    
     it "should call prepare() and run(call) on all of the verbs" do
       call = new_mock_call
       
       sillyio = S::Sillyio.new(call, "http://example.com")
       sillyio.send(:instance_variable_set, :@application_content, play_sequence_with_gather_xml)
+      
       sillyio.send :lex_application
       sillyio.send :parse_application
       sillyio.send(:instance_variable_get, :@parsed_application).each do |verb|
         mock(verb).prepare
         mock(verb).run call
       end
-      sillyio.run
+      sillyio.send :run_application
     end
   end
+  
+  describe "when redirecting" do
+    
+    it "should change the HTTP method if appropriate" do
+      first_url = "http://example.com/1.xml"
+      second_url = "http://example.com/2.xml"
+      
+      mock(RestClient).post(first_url, is_a(Hash)) { <<-XML }
+        <Response>
+          <Redirect method="get">#{second_url}</Redirect>
+        </Response>
+      XML
+      mock(RestClient).get(second_url, is_a(Hash)) { <<-XML }
+        <Response></Response>
+      XML
+      
+      S::Sillyio.new(new_mock_call, first_url).run
+    end
+    
+  end
+  
 end
 
 describe "SillyioSupport" do

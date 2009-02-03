@@ -67,6 +67,7 @@ class Sillyio
       "AccountGuid" => self.class.account_guid
     }
     
+    @http_method = "post"
   end
   
   def run
@@ -76,13 +77,14 @@ class Sillyio
     run_application
   rescue Redirection => redirection
     @application = redirection.uri
+    @http_method = redirection.http_method
     retry
   end
   
   protected
   
   def fetch_application
-    @application_content = RestClient.post(application.to_s, metadata)
+    @application_content = RestClient.send(@http_method, application.to_s, metadata)
   rescue => error
     ahn_log.sillyio.error error
     raise TwiMLDownloadException, "Could not fetch #@application"
@@ -90,7 +92,7 @@ class Sillyio
   
   def lex_application
     @lexed_application = begin
-      doc = XML::Parser.string(@application_content).parse 
+      doc = XML::Parser.string(@application_content).parse
       
       # Make sure the document has a <Response> root
       raise TwiMLFormatException, "No <Response> element!" unless doc.root.name == "Response"
@@ -130,12 +132,11 @@ class Sillyio
   
   class Redirection < Exception
     
-    attr_reader :uri, :params, :method
-    def initialize(uri, method, params={})
-      method = method.to_s.downcase
-      raise ArgumentError, "Unrecognized method #{method}" unless %w[post get].include? method
+    attr_reader :uri, :params, :http_method
+    def initialize(uri, http_method, params={})
+      @http_method = http_method.to_s.downcase
+      raise ArgumentError, "Unrecognized method #{method}" unless %w[post get].include? @http_method
       @uri    = uri.kind_of?(String) ? URI.parse(uri) : uri
-      @method = method
       @params = params
       super()
     end
