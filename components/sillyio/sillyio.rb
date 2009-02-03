@@ -242,7 +242,7 @@ class Sillyio
           raise TwiMLDownloadException, "Audio file #{@uri} does not have a valid Content-Type! (#{content_type})" 
         end
         
-        file_extension = content_type[/^audio\/(.+)$/, 1]
+        file_extension = content_type[/^audio\/(x-)?(.+)$/, 2]
         
         @sound_file      = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}.#{file_extension}"
         @temp_audio_file = File.expand_path "#{@audio_directory}/WIP/#{@encoded_filename}.#{file_extension}"

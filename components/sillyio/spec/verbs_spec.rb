@@ -53,7 +53,7 @@ describe "Play" do
     play.encoded_filename.should eql(encoded_filename)
     
     filename = "aHR0cDovL3NpbGx5aW8uY29tL3Rlc3Rpbmcvc291bmRfZmlsZXMvaGVsbG8td29ybGQuZ3Nt.gsm"
-    mock(S::Sillyio::SillyioSupport).http_head(is_a(URI::HTTP)) { {"content-type" => "audio/gsm"} }
+    mock(S::Sillyio::SillyioSupport).http_head(is_a(URI::HTTP)) { {"content-type" => "audio/x-gsm"} }
     mock(S::Sillyio::SillyioSupport).download(url, /#{filename}$/)
     mock(FileUtils).mv(is_a(String), is_a(String))
     play.prepare
