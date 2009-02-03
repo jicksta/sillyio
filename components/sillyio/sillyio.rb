@@ -394,7 +394,7 @@ class Sillyio
         @redirection = Redirection.new(uri, @http_method)
       end
       
-      def run
+      def run(call)
         raise @redirection
       end
       

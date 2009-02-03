@@ -206,6 +206,8 @@ end
 
 describe "Redirect" do
   
+  include SillyioTestHelper
+  
   # I had to clarify this with the 
   it "should default the 'method' to POST when no method is given" do
     xml_element = XML::Node.new("Redirect")
@@ -244,7 +246,7 @@ describe "Redirect" do
     xml_element["method"] = method
     
     begin
-      S::Sillyio::Verbs::Redirect.from_xml_element(xml_element).run
+      S::Sillyio::Verbs::Redirect.from_xml_element(xml_element).run(new_mock_call)
     rescue S::Sillyio::Redirection => redirect
       redirect.uri.to_s.should eql(uri)
       redirect.method.should eql(method)
