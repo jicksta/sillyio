@@ -11,13 +11,21 @@ end
 begin
   require 'xml'
 rescue LoadError
-  abort "Sillyio depends on the libxml-ruby gem. Please install it by doing 'sudo gem install libxml-ruby'. Note: This gem does not really work on Windows. On OSX, you may need to do 'sudo port install rb-libxml2'. You'll need the Ruby development headers installed for the compile to work."
+  abort <<-MESSAGE
+Sillyio depends on the libxml-ruby gem. Please install it by doing 'sudo gem install libxml-ruby'.
+
+Note: This gem does not really work on Windows.
+
+On OSX, you may need to do 'sudo port install rb-libxml2'.
+  
+On Ubuntu, do "sudo apt-get install libxml-ruby libxml2-dev" and then "sudo gem install libxml-ruby".
+  MESSAGE
 end
 
 begin
   require 'curl'
 rescue LoadError
-  abort "Sillyio depends on the curb gem. Please install it by doing 'sudo gem install curb'. Note: You'll need the Ruby development headers installed for the compile to work."
+  abort "Sillyio depends on the curb gem. Please install it by doing 'sudo gem install curb'. On Ubuntu you'll need to do 'apt-get install libcurl4-openssl-dev'. Note: You'll need the Ruby development headers installed for the compile to work."
 end
 
 
@@ -154,6 +162,9 @@ class Sillyio
   
   module Verbs
     
+    RECOGNIZED_SOUND_FORMATS = %w[audio/mpeg audio/wav audio/wave audio/x-wav audio/aiff audio/x-aifc
+        audio/x-aiff audio/x-gsm audio/gsm audio/ulaw]
+    
     VERB_DEFAULTS = {
       "Say" => {
         :voice    => "man",
@@ -214,11 +225,8 @@ class Sillyio
         raise ArgumentError, "First argument must be a URI object!" unless uri.kind_of? URI::HTTP
         @uri = uri
         
-        @encoded_filename = Base64.encode64(@uri.to_s).chomp
+        @encoded_filename = Base64.encode64(@uri.to_s).gsub("\n", "")
         @audio_directory  = COMPONENTS.sillyio["audio_directory"]
-        
-        @sound_file      = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}"
-        @temp_audio_file = File.expand_path "#{@audio_directory}/WIP/#{@encoded_filename}"
       end
       
       def prepare
@@ -229,6 +237,15 @@ class Sillyio
         raise TwiMLDownloadException, "Could not do a HEAD on #{@uri}" unless remote_file_metadata
         
         content_type = remote_file_metadata["content-type"]
+        
+        unless RECOGNIZED_SOUND_FORMATS.include? content_type
+          raise TwiMLDownloadException, "Audio file does not have a valid Content-Type!" 
+        end
+        
+        file_extension = content_type[/^audio\/(.+)$/, 1]
+        
+        @sound_file      = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}.#{file_extension}"
+        @temp_audio_file = File.expand_path "#{@audio_directory}/WIP/#{@encoded_filename}.#{file_extension}"
         
         if File.exists?(sound_file) || File.exists?(temp_audio_file)
           # Note: If the temp file exists in WIP, we'll assume another thread is servicing it and it's effectively

@@ -1,29 +1,4 @@
-unless defined? Adhearsion
-  if File.exists? File.dirname(__FILE__) + "/../../../adhearsion/lib/adhearsion.rb"
-    # If you wish to freeze a copy of Adhearsion to this app, simply place a copy of Adhearsion
-    # into a folder named "adhearsion" within this app's main directory.
-    require File.dirname(__FILE__) + "/../../../adhearsion/lib/adhearsion.rb"
-  elsif File.exists? File.dirname(__FILE__) + "/../../../../../../lib/adhearsion.rb"
-    # This file may be ran from the within the Adhearsion framework code (before a project has been generated)
-    require File.dirname(__FILE__) + "/../../../../../../lib/adhearsion.rb"
-  else
-    path_to_ahn_file = `which ahn`.chomp
-    p ENV["PATH"], path_to_ahn_file
-    if File.exist?(path_to_ahn_file)
-      require File.dirname(path_to_ahn_file) + "/../lib/adhearsion"
-    else
-      require 'rubygems'
-      gem 'adhearsion', '>= 0.8.1'
-      require 'adhearsion'
-    end
-  end
-end
-
-# Official specification here: http://www.twilio.com/docs/api_reference/TwiML
-
-require 'adhearsion/component_manager/spec_framework'
-
-RESTFUL_RPC = ComponentTester.new("sillyio", File.dirname(__FILE__) + "/../..")
+require File.dirname(__FILE__) + "/spec_helper"
 
 describe "Say" do
   
@@ -47,12 +22,18 @@ describe "Say" do
 end
 
 describe "Play" do
+  
+  include SillyioTestHelper
+  
+  before :each do
+    initialize_configuration
+  end
+  
   describe "The audio file Content-Type check" do
+    
     %w[audio/mpeg audio/wav audio/wave audio/x-wav audio/aiff audio/x-aifc
         audio/x-aiff audio/x-gsm audio/gsm audio/ulaw].each do |content_type|
-      it "should allow #{content_type}" do
-        mock(something.headers)["Content-Type"].returns content_type
-      end
+      it "should allow #{content_type}"
     end
     it "should not allow other Content-Types"
   end  
@@ -64,7 +45,20 @@ describe "Play" do
     it "should raise an TwiMLFormatException if the value not an integer"
   end
   
-  it "should download the file to a base64 encoded form of the URL"
+  it "should download the file to a base64 encoded form of the URL" do
+    url = "http://sillyio.com/testing/sound_files/hello-world.gsm"
+    encoded_filename = "aHR0cDovL3NpbGx5aW8uY29tL3Rlc3Rpbmcvc291bmRfZmlsZXMvaGVsbG8td29ybGQuZ3Nt"
+    
+    play = S::Sillyio::Verbs::Play.new(URI.parse(url))
+    play.encoded_filename.should eql(encoded_filename)
+    
+    filename = "aHR0cDovL3NpbGx5aW8uY29tL3Rlc3Rpbmcvc291bmRfZmlsZXMvaGVsbG8td29ybGQuZ3Nt.gsm"
+    mock(S::Sillyio::SillyioSupport).http_head(is_a(URI::HTTP)) { {"content-type" => "audio/gsm"} }
+    mock(S::Sillyio::SillyioSupport).download(url, /#{filename}$/)
+    mock(FileUtils).mv(is_a(String), is_a(String))
+    play.prepare
+    play.sound_file.ends_with?("/#{filename}").should equal(true)
+  end
   
 end
 
