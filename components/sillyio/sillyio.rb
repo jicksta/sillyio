@@ -9,10 +9,17 @@ rescue LoadError
 end
 
 begin
-  require 'hpricot'
+  require 'xml'
 rescue LoadError
-  abort "Sillyio depends on the Hpricot gem. Please install it by doing 'sudo gem install hpricot'. Note: you must have the Ruby development headers installed because Hpricot depends upon a natively-compiled library for parsing XML efficiently."
+  abort "Sillyio depends on the libxml-ruby gem. Please install it by doing 'sudo gem install libxml-ruby'. Note: This gem does not really work on Windows. On OSX, you may need to do 'sudo port install rb-libxml2'. You'll need the Ruby development headers installed for the compile to work."
 end
+
+begin
+  require 'curl'
+rescue LoadError
+  abort "Sillyio depends on the curb gem. Please install it by doing 'sudo gem install curb'. Note: You'll need the Ruby development headers installed for the compile to work."
+end
+
 
 methods_for :rpc do
   def sillyio(application_url)
@@ -67,23 +74,26 @@ class Sillyio
   
   def lex_application
     @lexed_application ||= begin
-      doc = Hpricot.XML @application_content
-      response = doc.at "Response"
-      raise TwiMLFormatException, "No <Response> element!" unless response
-      response.children
+      doc = XML::Parser.string(@application_content).parse 
+      
+      # Make sure the document has a <Response> root
+      raise TwiMLFormatException, "No <Response> element!" unless doc.root.name == "Response"
+      
+      # Make sure we recognize all the Verbs
+      invalid_verbs = doc.find("/Response//*").select { |element| not Verbs.const_defined? element.name }
+      raise UnrecognizedVerbException.new(*invalid_verbs.uniq) if invalid_verbs.any?
+      
+      doc.find("/Response/*").to_a # Ignores text elements
     end
+  rescue LibXML::XML::Error => parse_error
+    raise TwiMLSyntaxException, parse_error.message
   end
   
   def parse_application
-    p @lexed_application
+    # Check all Verb names
     @parsed_application ||= @lexed_application.map do |element|
-      next if element.is_a? Hpricot::Text
-      if Verbs.const_defined? element.name.capitalize
-        Verbs.const_get(element.name).from_hpricot(element)
-      else
-        invalid_verb! element
-      end
-    end.compact
+      Verbs.const_get(element.name).from_xml_element element
+    end
   end
   
   def run_application
@@ -95,30 +105,21 @@ class Sillyio
   end
   
   def metadata
-    immediate_call_metadata.merge location_data
+    @metadata ||= immediate_call_metadata.merge(location_data)
   end
   
   def location_data
     {}
   end
   
-  def invalid_verb!(element)
-    message = <<-MESSAGE
-Error parsing document! The following document contains an invalid verb! (#{element.name})
-
-#{@application_content}
-
-Please check the formatting of your
-    MESSAGE
-    
-    ahn_log.sillyio.error message
-    
-    raise UnrecognizedVerbException, message
-    
-  end
-  
   class TwiMLFormatException < Exception; end
-  class UnrecognizedVerbException < Exception; end
+  class TwiMLSyntaxException < TwiMLFormatException; end
+  
+  class UnrecognizedVerbException < TwiMLFormatException
+    def initialize(*verb_names)
+      super "Unrecognized verbs: " + verb_names.to_sentence
+    end
+  end
   
   module SillyioSupport
     class << self
@@ -141,7 +142,7 @@ Please check the formatting of your
       end
       
       def download(source_uri, destination_file)
-        Curl::Easy.download @uri, temp_audio_file
+        Curl::Easy.download source_uri, destination_file
       end
     end
   end
@@ -188,13 +189,13 @@ Please check the formatting of your
     class Play
 
       class << self
-        def from_hpricot(element)
-          attributes = VERB_DEFAULTS["Play"].merge element.attributes.symbolize_keys
+        def from_xml_element(element)
+          attributes = VERB_DEFAULTS["Play"].merge element.attributes.to_h.symbolize_keys
           loop_times = attributes[:loop]
           raise TwiMLFormatException, "Play[loop] must be a positive integer" if loop_times !~ /^\d+$/
           loop_times = loop_times.to_i
           
-          file_url = element.innerText.strip
+          file_url = element.content.strip
           uri = URI.parse file_url
           unless uri.kind_of? URI::HTTP
             raise TwiMLFormatException, "Play URL #{file_url} is not a valid HTTP URL!"
@@ -208,17 +209,17 @@ Please check the formatting of your
         raise ArgumentError, "First argument must be a URI object!" unless uri.kind_of? URI::HTTP
         @uri = uri
         
-        @encoded_filename = Base64.b64encode(@uri.to_s).chomp
+        @encoded_filename = Base64.encode64(@uri.to_s).chomp
         @audio_directory  = COMPONENTS.sillyio["audio_directory"]
         
-        @sound_file      = File.join(audio_directory, "cached", url_encoded_for_filename)
-        @temp_audio_file = File.join(audio_directory,    "WIP", url_encoded_for_filename)
+        @sound_file      = File.join(@audio_directory, "cached", @encoded_filename)
+        @temp_audio_file = File.join(@audio_directory,    "WIP", @encoded_filename)
       end
       
       def prepare
         return if prepared?
 
-        remote_file_metadata = SillyioSupport.head @uri
+        remote_file_metadata = SillyioSupport.http_head @uri
         
         content_type = remote_file_metadata["content-type"]
         
@@ -248,7 +249,7 @@ Please check the formatting of your
     class Gather
       
       class << self
-        def from_hpricot(element)
+        def from_xml_element(element)
           new
         end
       end

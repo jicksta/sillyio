@@ -23,6 +23,10 @@ describe "Instantiating a new Sillyio object" do
   
   include SillyioTestHelper
   
+  before :each do
+    initialize_configuration
+  end
+  
   it "should make an accessor of the call object" do
     call = new_mock_call
     sillyio = S::Sillyio.new(call, "http://example.com")
@@ -60,6 +64,10 @@ describe "Executing a TwiML resource" do
   
   include SillyioTestHelper
   
+  before :each do
+    initialize_configuration
+  end
+  
   describe "Fetching the TwiML resource" do
     it "should post the location headers with RestClient" do
       
@@ -94,21 +102,21 @@ describe "Executing a TwiML resource" do
   end
   
   describe "Parsing the TwiML resource" do
-    it "should convert all elements into their appropriate verbs using Verb::from_hpricot" do
+    it "should convert all elements into their appropriate verbs" do
       xml = play_sequence_with_gather_xml
       sillyio = S::Sillyio.new(new_mock_call, "http://example.com")
       sillyio.send(:instance_variable_set, :@application_content, xml)
       sillyio.send :lex_application
       sillyio.send :parse_application
       
-      
       parsed_application = sillyio.send(:instance_variable_get, :@parsed_application)
       
       parsed_application.zip(
         [S::Sillyio::Verbs::Play,
-         S::Sillyio::Verbs::Play, S::Sillyio::Verbs::Play,
-          S::Sillyio::Verbs::Gather]).each do |(verb_object, verb_class)|
-            
+         S::Sillyio::Verbs::Play,
+         S::Sillyio::Verbs::Play,
+         S::Sillyio::Verbs::Gather]
+      ).each do |(verb_object, verb_class)|
         verb_object.should be_instance_of(verb_class)
       end
     end
@@ -118,14 +126,15 @@ describe "Executing a TwiML resource" do
     it "should prepare() all of the verbs" do
       
     end
-    it "should call parse() run(call) on all of the verbs" do
+    it "should call prepare() and run(call) on all of the verbs" do
       call = new_mock_call
+      
       sillyio = S::Sillyio.new(call, "http://example.com")
       sillyio.send(:instance_variable_set, :@application_content, play_sequence_with_gather_xml)
       sillyio.send :lex_application
       sillyio.send :parse_application
       sillyio.send(:instance_variable_get, :@parsed_application).each do |verb|
-        mock(verb).parse
+        mock(verb).prepare
         mock(verb).run call
       end
       sillyio.run
@@ -133,7 +142,7 @@ describe "Executing a TwiML resource" do
   end
 end
 
-describe "SillyioHelper" do
+describe "SillyioSupport" do
   describe "::head" do
     
   end
@@ -142,6 +151,11 @@ end
 
 BEGIN {
   module SillyioTestHelper
+
+    def initialize_configuration
+      mock_component_config_with :sillyio => {"audio_directory" => "site/public/audio"}
+      S.initialize!
+    end
 
     def play_sequence_with_gather_xml
       <<-XML
