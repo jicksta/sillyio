@@ -24,6 +24,15 @@ module SillyioTestHelper
     S.initialize!
   end
 
+  def xml_node(name, *args)
+    args = args.clone
+    options = args.last.kind_of?(Hash) ? args.pop : {}
+    returning XML::Node.new(name) do |element|
+      options.each_pair { |key,value| element[key.to_s] = value.to_s }
+      args.each { |arg| element << arg }
+    end
+  end
+
   def play_sequence_with_gather_xml
     <<-XML
     <Response>

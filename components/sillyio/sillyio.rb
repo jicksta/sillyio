@@ -53,6 +53,7 @@ class Sillyio
   def initialize(call, application)
     @call = call
     @application = URI.parse application
+    @http_method = "post"
     
     # Note: URI::HTTPS is a subclass of URI::HTTP, therefore also valid.
     unless @application.kind_of? URI::HTTP
@@ -67,7 +68,6 @@ class Sillyio
       "AccountGuid" => self.class.account_guid
     }
     
-    @http_method = "post"
   end
   
   def run
@@ -110,7 +110,7 @@ class Sillyio
   def parse_application
     # Check all Verb names
     @parsed_application = @lexed_application.map do |element|
-      Verbs.const_get(element.name).from_xml_element element
+      Verbs.const_get(element.name).from_document(element, @uri)
     end
   end
   
@@ -233,7 +233,7 @@ class Sillyio
     class Play < AbstractVerb
 
       class << self
-        def from_xml_element(element)
+        def from_document(element, uri=nil)
           attributes = attributes_from_xml_element element
           
           loop_times = extract_loop_attribute attributes
@@ -244,12 +244,12 @@ class Sillyio
           # Make sure a URL was given
           raise TwiMLFormatException, "No file URL given!" if file_url.empty?
           
-          uri = URI.parse file_url
+          file_uri = URI.parse file_url
           
           # Must be a HTTP or HTTPS URI.
-          raise TwiMLFormatException, "Play URL #{file_url} is not a valid HTTP URL!" unless uri.kind_of? URI::HTTP
+          raise TwiMLFormatException, "Play URL #{file_url} is not a valid HTTP URL!" unless file_uri.kind_of? URI::HTTP
           
-          new(uri, loop_times)
+          new(file_uri, loop_times)
         end
         
         protected
@@ -317,18 +317,29 @@ class Sillyio
     class Gather < AbstractVerb
       
       class << self
-        def from_xml_element(element)
+        def from_document(element, uri)
+          attributes = attributes_from_xml_element element
+          action = attributes[:action]
+          @application = uri
           new
         end
       end
       
-      def initialize
+      def initialize #.....
+        # TODO
       end
       
       def prepare
+        # TODO: prepare all nested elements
       end
       
-      def run
+      def run(call)
+        result = call.input @number_of_digits,
+           :play            => @sound_files,
+           :timeout         => @timouet,
+           :terminating_key => @terminating_key
+        
+        raise Redirection.new(uri, @http_method, {"Digits" => result})
       end
       
     end
@@ -336,7 +347,7 @@ class Sillyio
     # http://www.twilio.com/docs/api_reference/TwiML/pause
     class Pause < AbstractVerb
       class << self
-        def from_xml_element(element)
+        def from_document(element, uri=nil)
           attributes = attributes_from_xml_element element
           length = attributes[:length]
           raise TwiMLFormatException, 'Invalid <Pause> "length" attribute!' if length !~ /^[1-9]\d*$/
@@ -358,7 +369,7 @@ class Sillyio
     # http://www.twilio.com/docs/api_reference/TwiML/pause
     class Hangup < AbstractVerb
       class << self
-        def from_xml_element(element)
+        def from_document(element, uri=nil)
           raise TwiMLFormatException, "<Hangup> requires no attributes!" unless element.attributes.length.zero?
           raise TwiMLFormatException, "<Hangup> can have no children!" unless element.empty?
           new
@@ -374,7 +385,7 @@ class Sillyio
     class Redirect < AbstractVerb
       
       class << self
-        def from_xml_element(element)
+        def from_document(element, uri=nil)
           attributes = attributes_from_xml_element element
           method = attributes[:method].downcase
           raise TwiMLFormatException, "Redirect method must be GET or HEAD" unless %w[get post].include? method

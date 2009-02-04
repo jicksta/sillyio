@@ -78,19 +78,17 @@ describe "Play" do
       verb.run(call)
     end
     it "should raise an TwiMLFormatException if the value is negative" do
-      xml_element = XML::Node.new("Play")
-      xml_element["loop"] = "-4"
-      xml_element << "http://x.gd/x.wav"
+      xml_element = xml_node "Play", "http://x.gd/x.wav", "loop" => "-4"
+      
       lambda do
-        verb = S::Sillyio::Verbs::Play.from_xml_element xml_element
+        verb = S::Sillyio::Verbs::Play.from_document xml_element
       end.should raise_error(S::Sillyio::TwiMLFormatException)
     end
     it "should raise an TwiMLFormatException if the value not an integer" do
-      xml_element = XML::Node.new("Play")
-      xml_element["loop"] = "sexypants"
-      xml_element << "http://x.gd/x.wav"
+      xml_element = xml_node "Play", "http://x.gd/x.wav", "loop" => "sexypants"
+      
       lambda do
-        verb = S::Sillyio::Verbs::Play.from_xml_element xml_element
+        verb = S::Sillyio::Verbs::Play.from_document xml_element
       end.should raise_error(S::Sillyio::TwiMLFormatException)
     end
   end
@@ -119,8 +117,17 @@ describe "Play" do
 end
 
 describe "Gather" do
+  
+  include SillyioTestHelper
+  
   describe 'the "action" attribute' do
-    it "should convert a relative URL to an absolute URL"
+    it "should convert a relative URL to an absolute URL" do
+      relative = "2.xml"
+      full = "http://example.com/1.xml"
+      
+      xml_element = xml_node "Gather", :action => relative
+      
+    end
     it "should default to the current document URL"
   end
   describe 'the "method" attribute' do
@@ -210,17 +217,15 @@ describe "Redirect" do
   
   # I had to clarify this with the 
   it "should default the 'method' to POST when no method is given" do
-    xml_element = XML::Node.new("Redirect")
-    xml_element << "http://example.com"
-    S::Sillyio::Verbs::Redirect.from_xml_element(xml_element).http_method.should eql("post")
+    xml_element = xml_node "Redirect", "http://example.com"
+    S::Sillyio::Verbs::Redirect.from_document(xml_element).http_method.should eql("post")
   end
   
   it "should raise a TwiMLFormatException if the specified 'method' is not GET or POST" do
-    xml_element = XML::Node.new("Redirect")
-    xml_element["method"] = "head"
-    xml_element << "http://example.com"
+    xml_element = xml_node "Redirect", "http://example.com", :method => "head"
+    
     lambda do
-      S::Sillyio::Verbs::Redirect.from_xml_element(xml_element)
+      S::Sillyio::Verbs::Redirect.from_document(xml_element)
     end.should raise_error(S::Sillyio::TwiMLFormatException)
   end
   
@@ -233,7 +238,7 @@ describe "Redirect" do
   
   it "should raise a TwiMLFormatException if no URL is given" do
     lambda do
-      S::Sillyio::Verbs::Redirect.from_xml_element XML::Node.new("Redirect")
+      S::Sillyio::Verbs::Redirect.from_document xml_node("Redirect")
     end.should raise_error(S::Sillyio::TwiMLFormatException)
   end
   
@@ -241,12 +246,10 @@ describe "Redirect" do
     uri = "http://google.com"
     method = "post"
     
-    xml_element = XML::Node.new("Redirect")
-    xml_element << uri
-    xml_element["method"] = method
+    xml_element = xml_node "Redirect", uri, :method => method
     
     begin
-      S::Sillyio::Verbs::Redirect.from_xml_element(xml_element).run(new_mock_call)
+      S::Sillyio::Verbs::Redirect.from_document(xml_element).run(new_mock_call)
     rescue S::Sillyio::Redirection => redirect
       redirect.uri.to_s.should eql(uri)
       redirect.http_method.should eql(method)
@@ -282,21 +285,21 @@ describe "Pause" do
     verb.run(new_mock_call)
   end
   it "should raise an TwiMLFormatException if the length attribute is not an integer" do
-    xml_element = XML::Node.new("Pause")
-    xml_element["length"] = "jay"
+    xml_element = xml_node "Pause", :length => "jay"
+    
     lambda do
-      S::Sillyio::Verbs::Pause.from_xml_element(xml_element)
+      S::Sillyio::Verbs::Pause.from_document(xml_element)
     end.should raise_error(S::Sillyio::TwiMLFormatException)
   end
   it "should raise an TwiMLFormatException if the length attribute is negative" do
-    xml_element = XML::Node.new("Pause")
-    xml_element["length"] = "-1"
+    xml_element = xml_node "Pause", :length => "-1"
+    
     lambda do
-      S::Sillyio::Verbs::Pause.from_xml_element(xml_element)
+      S::Sillyio::Verbs::Pause.from_document(xml_element)
     end.should raise_error(S::Sillyio::TwiMLFormatException)
   end
   it "should default the pause length to 1 second" do
-    S::Sillyio::Verbs::Pause.from_xml_element(XML::Node.new("Pause")).sleep_time.should equal(1)
+    S::Sillyio::Verbs::Pause.from_document(xml_node("Pause")).sleep_time.should equal(1)
   end
 end
 
@@ -315,18 +318,18 @@ describe "Hangup" do
   end
   
   it "should raise a TwiMLFormatException if element has any attributes" do
-    xml_element = XML::Node.new("Hangup")
-    xml_element["length"] = "1"
+    xml_element = xml_node("Hangup", :length => "1")
+    
     lambda do
-      S::Sillyio::Verbs::Hangup.from_xml_element(xml_element).run(new_mock_call)
+      S::Sillyio::Verbs::Hangup.from_document(xml_element).run(new_mock_call)
     end.should raise_error(S::Sillyio::TwiMLFormatException)
   end
   
   it "should raise a TwiMLFormatException if element has any children" do
-    xml_element = XML::Node.new("Hangup")
-    xml_element << "blah"
+    xml_element = xml_node "Hangup", "blah"
+    
     lambda do
-      S::Sillyio::Verbs::Hangup.from_xml_element(xml_element).run(new_mock_call)
+      S::Sillyio::Verbs::Hangup.from_document(xml_element).run(new_mock_call)
     end.should raise_error(S::Sillyio::TwiMLFormatException)
   end
   
