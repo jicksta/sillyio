@@ -1,0 +1,13 @@
+<h1>Editing route_rule</h1>
+
+<% form_for(@route_rule) do |f| %>
+  <%= f.error_messages %>
+  <%=f.label :did, 'DID: '%><%= f.text_field :did%><br/>
+  <%=f.label :url, 'URL: '%><%= f.text_field :url%><br/>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @route_rule %> |
+<%= link_to 'Back', route_rules_path %>

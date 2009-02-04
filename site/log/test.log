@@ -113,3 +113,1683 @@ Migrating to CreateRouteRules (20090202232341)
  WHERE type = 'table' AND NOT name = 'sqlite_sequence'
 [0m
   [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("route_rules")[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 21:54:56', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 21:54:56')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 21:55:35', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 21:55:35')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 21:56:40', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 21:56:40')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 21:56:57', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 21:56:57')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:03:59', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:03:59')[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:04:55', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:04:55')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:19:53', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:19:53')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:20:02', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:20:02')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:43:12', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:43:12')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:44:19', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:44:19')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:46:24', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:46:24')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:46:43', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:46:43')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:48:06', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:48:06')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:48:21', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:48:21')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:48:53', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:48:53')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 22:49:49', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 22:49:49')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 23:38:37', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 23:38:37')[0m
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 17:59:23) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/route_rules
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 17:59:23) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/route_rules
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 17:59:23) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 17:59:23) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 17:59:23) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 17:59:23) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x11c051a @name="RouteRule_1006"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 17:59:23) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x11b9f62 @name="RouteRule_1007"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 17:59:23) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 17:59:23) [POST]
+  Parameters: {"route_rule"=>{}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 17:59:23) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 17:59:23) [POST]
+  Parameters: {"route_rule"=>{}}
+Redirected to #[RouteRule:0x11987a4 @name="RouteRule_1011"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 17:59:23) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Redirected to #[RouteRule:0x118ea6a @name="RouteRule_1012"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#edit (for 0.0.0.0 at 2009-02-03 17:59:23) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/37/edit]
+
+
+Processing RouteRulesController#new (for 0.0.0.0 at 2009-02-03 17:59:23) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/new]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 17:59:23) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 17:59:23) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 17:59:23) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 17:59:23) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+Rendering /route_rules/edit.html.erb
+Rendering /route_rules/show.html.erb
+Rendering /route_rules/new.html.erb
+Rendering /route_rules/index.html.erb
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-03 23:59:23', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-03 23:59:23')[0m
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:19:29) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/route_rules
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:19:29) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/route_rules
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:19:29) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:19:29) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:19:29) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:19:29) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x11c00ec @name="RouteRule_1006"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:19:29) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x11b9b34 @name="RouteRule_1007"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:19:29) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:19:29) [POST]
+  Parameters: {"route_rule"=>{}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:19:29) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:19:29) [POST]
+  Parameters: {"route_rule"=>{}}
+Redirected to #[RouteRule:0x1198376 @name="RouteRule_1011"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:19:29) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Redirected to #[RouteRule:0x118dfa2 @name="RouteRule_1012"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#edit (for 0.0.0.0 at 2009-02-03 19:19:29) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37/edit]
+
+
+Processing RouteRulesController#new (for 0.0.0.0 at 2009-02-03 19:19:29) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/new]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:19:29) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:19:29) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:19:29) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:19:30) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+Rendering /route_rules/edit.html.erb
+Rendering /route_rules/show.html.erb
+Rendering /route_rules/new.html.erb
+Rendering /route_rules/index.html.erb
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:19:30', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:19:30')[0m
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:34:56) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/route_rules
+Completed in 3ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:34:56) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/route_rules
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:34:56) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:34:56) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 2ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:34:56) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:34:56) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x116192a @name="RouteRule_1006"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:34:56) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x115a864 @name="RouteRule_1007"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:34:56) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:34:56) [POST]
+  Parameters: {"route_rule"=>{}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:34:56) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:34:56) [POST]
+  Parameters: {"route_rule"=>{}}
+Redirected to #[RouteRule:0x1137288 @name="RouteRule_1011"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:34:56) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Redirected to #[RouteRule:0x112d9fe @name="RouteRule_1012"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#edit (for 0.0.0.0 at 2009-02-03 19:34:56) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/37/edit]
+
+
+Processing RouteRulesController#new (for 0.0.0.0 at 2009-02-03 19:34:56) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/new]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:34:56) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:34:56) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:34:56) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:34:56) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+Rendering /route_rules/index.html.erb
+Rendering /route_rules/new.html.erb
+Rendering /route_rules/show.html.erb
+Rendering /route_rules/edit.html.erb
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:34:56', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:34:56')[0m
+Rendering /caller_ids/edit.html.erb
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:34:57) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/caller_ids
+Completed in 3ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:34:57) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/caller_ids
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:34:57) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:34:57) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:34:57) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:34:57) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x103ad62 @name="CallerId_1029"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:34:57) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x1034fd4 @name="CallerId_1030"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:34:57) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:34:57) [POST]
+  Parameters: {"caller_id"=>{}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:34:57) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:34:57) [POST]
+  Parameters: {"caller_id"=>{}}
+Redirected to #[CallerId:0x101a7ec @name="CallerId_1034"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:34:57) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Redirected to #[CallerId:0x1014bd0 @name="CallerId_1035"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#edit (for 0.0.0.0 at 2009-02-03 19:34:57) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37/edit]
+
+
+Processing CallerIdsController#new (for 0.0.0.0 at 2009-02-03 19:34:57) [GET]
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/new]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:34:57) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:34:57) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:34:57) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:34:57) [GET]
+Rendering caller_ids/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+Rendering /caller_ids/index.html.erb
+Rendering /caller_ids/show.html.erb
+Rendering /caller_ids/new.html.erb
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:34:57', 'value for description', 'value for did', '2009-02-04 01:34:57')[0m
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:36:28) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/route_rules
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:36:28) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/route_rules
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x11612e0 @name="RouteRule_1006"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x115a5d0 @name="RouteRule_1007"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:36:28) [POST]
+  Parameters: {"route_rule"=>{}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:36:28) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:36:28) [POST]
+  Parameters: {"route_rule"=>{}}
+Redirected to #[RouteRule:0x1136c3e @name="RouteRule_1011"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:36:28) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Redirected to #[RouteRule:0x112d904 @name="RouteRule_1012"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#edit (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37/edit]
+
+
+Processing RouteRulesController#new (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/new]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+Rendering /route_rules/index.html.erb
+Rendering /route_rules/new.html.erb
+Rendering /route_rules/show.html.erb
+Rendering /route_rules/edit.html.erb
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:36:28', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:36:28')[0m
+Rendering /caller_ids/edit.html.erb
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:36:28) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/caller_ids
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:36:28) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/caller_ids
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x103a718 @name="CallerId_1029"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x103498a @name="CallerId_1030"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:28) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:36:28) [POST]
+  Parameters: {"caller_id"=>{}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:36:28) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:36:28) [POST]
+  Parameters: {"caller_id"=>{}}
+Redirected to #[CallerId:0x101a1a2 @name="CallerId_1034"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:36:28) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Redirected to #[CallerId:0x1014586 @name="CallerId_1035"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#edit (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37/edit]
+
+
+Processing CallerIdsController#new (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/new]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:36:28) [GET]
+Rendering caller_ids/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+Rendering /caller_ids/index.html.erb
+Rendering /caller_ids/show.html.erb
+Rendering /caller_ids/new.html.erb
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:36:28', 'value for description', 'value for did', '2009-02-04 01:36:28')[0m
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:36:45) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/route_rules
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:36:45) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/route_rules
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x11612cc @name="RouteRule_1006"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x115a5bc @name="RouteRule_1007"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:36:45) [POST]
+  Parameters: {"route_rule"=>{}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:36:45) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:36:45) [POST]
+  Parameters: {"route_rule"=>{}}
+Redirected to #[RouteRule:0x1136c2a @name="RouteRule_1011"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:36:45) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Redirected to #[RouteRule:0x112d8f0 @name="RouteRule_1012"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#edit (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37/edit]
+
+
+Processing RouteRulesController#new (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/new]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+Rendering /route_rules/index.html.erb
+Rendering /route_rules/new.html.erb
+Rendering /route_rules/show.html.erb
+Rendering /route_rules/edit.html.erb
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:36:45', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:36:45')[0m
+Rendering /caller_ids/edit.html.erb
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:36:45) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/caller_ids
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:36:45) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/caller_ids
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x103a704 @name="CallerId_1029"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x1034976 @name="CallerId_1030"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:36:45) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:36:45) [POST]
+  Parameters: {"caller_id"=>{}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:36:45) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:36:45) [POST]
+  Parameters: {"caller_id"=>{}}
+Redirected to #[CallerId:0x101a18e @name="CallerId_1034"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:36:45) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Redirected to #[CallerId:0x1014572 @name="CallerId_1035"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#edit (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37/edit]
+
+
+Processing CallerIdsController#new (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/new]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:36:45) [GET]
+Rendering caller_ids/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+Rendering /caller_ids/index.html.erb
+Rendering /caller_ids/show.html.erb
+Rendering /caller_ids/new.html.erb
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:36:45', 'value for description', 'value for did', '2009-02-04 01:36:45')[0m
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:37:34) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/route_rules
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:37:34) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/route_rules
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x1160e9e @name="RouteRule_1006"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x1159dd8 @name="RouteRule_1007"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:37:34) [POST]
+  Parameters: {"route_rule"=>{}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:37:34) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:37:34) [POST]
+  Parameters: {"route_rule"=>{}}
+Redirected to #[RouteRule:0x11367fc @name="RouteRule_1011"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:37:34) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Redirected to #[RouteRule:0x112cf72 @name="RouteRule_1012"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#edit (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37/edit]
+
+
+Processing RouteRulesController#new (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/new]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+Rendering /route_rules/index.html.erb
+Rendering /route_rules/new.html.erb
+Rendering /route_rules/show.html.erb
+Rendering /route_rules/edit.html.erb
+  [4;36;1mRouteRule Create (0.7ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:37:34', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:37:34')[0m
+Rendering /caller_ids/edit.html.erb
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:37:34) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/caller_ids
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:37:34) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/caller_ids
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x1039fa2 @name="CallerId_1029"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x1034214 @name="CallerId_1030"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:37:34) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:37:34) [POST]
+  Parameters: {"caller_id"=>{}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:37:34) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:37:34) [POST]
+  Parameters: {"caller_id"=>{}}
+Redirected to #[CallerId:0x1019a2c @name="CallerId_1034"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:37:34) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Redirected to #[CallerId:0x1013e10 @name="CallerId_1035"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#edit (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37/edit]
+
+
+Processing CallerIdsController#new (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/new]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:37:34) [GET]
+Rendering caller_ids/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+Rendering /caller_ids/index.html.erb
+Rendering /caller_ids/show.html.erb
+Rendering /caller_ids/new.html.erb
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:38:45) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/route_rules
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:38:45) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/route_rules
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x1160e9e @name="RouteRule_1006"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x1159dd8 @name="RouteRule_1007"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:38:45) [POST]
+  Parameters: {"route_rule"=>{}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:38:45) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:38:45) [POST]
+  Parameters: {"route_rule"=>{}}
+Redirected to #[RouteRule:0x11367fc @name="RouteRule_1011"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:38:45) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Redirected to #[RouteRule:0x112cf72 @name="RouteRule_1012"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#edit (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/37/edit]
+
+
+Processing RouteRulesController#new (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/new]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+Rendering /route_rules/index.html.erb
+Rendering /route_rules/new.html.erb
+Rendering /route_rules/show.html.erb
+Rendering /route_rules/edit.html.erb
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:38:45', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:38:45')[0m
+Rendering /caller_ids/edit.html.erb
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:38:45) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/caller_ids
+Completed in 3ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:38:45) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/caller_ids
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x1039fac @name="CallerId_1029"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x103421e @name="CallerId_1030"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:38:45) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:38:45) [POST]
+  Parameters: {"caller_id"=>{}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:38:45) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:38:45) [POST]
+  Parameters: {"caller_id"=>{}}
+Redirected to #[CallerId:0x1019a36 @name="CallerId_1034"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:38:45) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Redirected to #[CallerId:0x1013e1a @name="CallerId_1035"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#edit (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37/edit]
+
+
+Processing CallerIdsController#new (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/new]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:38:45) [GET]
+Rendering caller_ids/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+Rendering /caller_ids/index.html.erb
+Rendering /caller_ids/show.html.erb
+Rendering /caller_ids/new.html.erb
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:38:45', '(214) 693-5115', '2146935115', '2009-02-04 01:38:45')[0m
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:40:06) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/route_rules
+Completed in 2ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#destroy (for 0.0.0.0 at 2009-02-03 19:40:06) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/route_rules
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x1160bec @name="RouteRule_1006"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[RouteRule:0x1159aea @name="RouteRule_1007"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules/1]
+
+
+Processing RouteRulesController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"route_rule"=>{"these"=>"params"}, "id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:40:06) [POST]
+  Parameters: {"route_rule"=>{}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:40:06) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:40:06) [POST]
+  Parameters: {"route_rule"=>{}}
+Redirected to #[RouteRule:0x113654a @name="RouteRule_1011"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?]
+
+
+Processing RouteRulesController#create (for 0.0.0.0 at 2009-02-03 19:40:06) [POST]
+  Parameters: {"route_rule"=>{"these"=>"params"}}
+Redirected to #[RouteRule:0x112ccac @name="RouteRule_1012"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/route_rules?route_rule%5Bthese%5D=params]
+
+
+Processing RouteRulesController#edit (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37/edit]
+
+
+Processing RouteRulesController#new (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/new]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#show (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+  Parameters: {"id"=>"37"}
+Rendering template within layouts/route_rules
+Rendering route_rules/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules/37]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+
+
+Processing RouteRulesController#index (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+Rendering template within layouts/route_rules
+Rendering route_rules/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/route_rules]
+Rendering /route_rules/index.html.erb
+Rendering /route_rules/new.html.erb
+Rendering /route_rules/show.html.erb
+Rendering /route_rules/edit.html.erb
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:40:06', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:40:06')[0m
+Rendering /caller_ids/edit.html.erb
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:40:06) [DELETE]
+  Parameters: {"id"=>"1"}
+Redirected to http://test.host/caller_ids
+Completed in 3ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#destroy (for 0.0.0.0 at 2009-02-03 19:40:06) [DELETE]
+  Parameters: {"id"=>"37"}
+Redirected to http://test.host/caller_ids
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"1"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x1039cfa @name="CallerId_1029"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"1"}
+Redirected to #[CallerId:0x1033f6c @name="CallerId_1030"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids/1]
+
+
+Processing CallerIdsController#update (for 0.0.0.0 at 2009-02-03 19:40:06) [PUT]
+  Parameters: {"id"=>"37", "caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:40:06) [POST]
+  Parameters: {"caller_id"=>{}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:40:06) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:40:06) [POST]
+  Parameters: {"caller_id"=>{}}
+Redirected to #[CallerId:0x1019784 @name="CallerId_1034"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?]
+
+
+Processing CallerIdsController#create (for 0.0.0.0 at 2009-02-03 19:40:06) [POST]
+  Parameters: {"caller_id"=>{"these"=>"params"}}
+Redirected to #[CallerId:0x1013b68 @name="CallerId_1035"]
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/caller_ids?caller_id%5Bthese%5D=params]
+
+
+Processing CallerIdsController#edit (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/edit
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37/edit]
+
+
+Processing CallerIdsController#new (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+Rendering caller_ids/new
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/new]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+  Parameters: {"id"=>"37"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#show (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+  Parameters: {"id"=>"37"}
+Rendering caller_ids/show
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids/37]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+
+
+Processing CallerIdsController#index (for 0.0.0.0 at 2009-02-03 19:40:06) [GET]
+Rendering caller_ids/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/caller_ids]
+Rendering /caller_ids/index.html.erb
+Rendering /caller_ids/show.html.erb
+Rendering /caller_ids/new.html.erb
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:40:06', '(214) 693-5115', '2146935115', '2009-02-04 01:40:06')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:40:23', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:40:23')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:40:23', '(214) 693-5115', '2146935115', '2009-02-04 01:40:23')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:40:43', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:40:43')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:40:43', '(214) 693-5115', '2146935115', '2009-02-04 01:40:43')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:42:03', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:42:03')[0m
+  [4;35;1mCallerId Create (0.6ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:42:03', '(214) 693-5115', '2146935115', '2009-02-04 01:42:03')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:42:26', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:42:26')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:42:26', '(214) 693-5115', '2146935115', '2009-02-04 01:42:26')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:43:23', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:43:23')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:43:23', '2146935115', '2146935115', '2009-02-04 01:43:23')[0m
+  [4;36;1mCallerId Create (0.6ms)[0m   [0;1mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:50:27', '(214) 693-5115', '2146935115', '2009-02-04 01:50:27')[0m
+  [4;35;1mRouteRule Create (0.5ms)[0m   [0mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:50:27', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:50:27')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:52:38', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:52:38')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:52:38', '(214) 693-5115', '2146935115', '2009-02-04 01:52:38')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:52:55', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:52:55')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:52:55', '(214) 693-5115', '2146935115', '2009-02-04 01:52:55')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:53:32', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:53:32')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:53:33', '(214) 693-5115', '2146935115', '2009-02-04 01:53:33')[0m
+  [4;36;1mRouteRule Create (41.9ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:53:50', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:53:50')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:53:50', '(214) 693-5115', '2146935115', '2009-02-04 01:53:50')[0m
+  [4;36;1mRouteRule Create (0.8ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:54:17', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:54:17')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:54:17', '(214) 693-5115', '2146935115', '2009-02-04 01:54:17')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:54:44', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:54:44')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:54:44', '(214) 693-5115', '2146935115', '2009-02-04 01:54:44')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:54:58', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:54:58')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:54:58', '(214) 693-5115', '2146935115', '2009-02-04 01:54:58')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:55:13', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:55:13')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:55:13', '(214) 693-5115', '2146935115', '2009-02-04 01:55:13')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:55:37', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:55:37')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:55:37', '(214) 693-5115', '2146935115', '2009-02-04 01:55:37')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:55:49', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:55:49')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:55:49', '(214) 693-5115', '2146935115', '2009-02-04 01:55:49')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:56:05', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:56:05')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:56:05', '(214) 693-5115', '2146935115', '2009-02-04 01:56:05')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:56:54', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:56:54')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:56:54', '(214) 693-5115', '2146935115', '2009-02-04 01:56:54')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:57:09', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:57:09')[0m
+  [4;35;1mCallerId Create (0.6ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:57:09', '(214) 693-5115', '2146935115', '2009-02-04 01:57:09')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:58:29', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:58:29')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:58:30', '(214) 693-5115', '2146935115', '2009-02-04 01:58:30')[0m
+  [4;36;1mRouteRule Create (0.8ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 01:58:53', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 01:58:53')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 01:58:53', '(214) 693-5115', '2146935115', '2009-02-04 01:58:53')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 02:02:14', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 02:02:14')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 02:02:14', '(214) 693-5115', '2146935115', '2009-02-04 02:02:14')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 02:02:30', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 02:02:30')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 02:02:30', '(214) 693-5115', '2146935115', '2009-02-04 02:02:30')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 02:03:34', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 02:03:34')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 02:03:34', '(214) 693-5115', '2146935115', '2009-02-04 02:03:34')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 02:04:03', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 02:04:03')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 02:04:03', '(214) 693-5115', '2146935115', '2009-02-04 02:04:03')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 02:04:27', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 02:04:27')[0m
+  [4;35;1mCallerId Create (0.6ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 02:04:27', '(214) 693-5115', '2146935115', '2009-02-04 02:04:27')[0m
+  [4;36;1mRouteRule Create (0.6ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 02:07:29', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 02:07:29')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 02:07:29', '(214) 693-5115', '2146935115', '2009-02-04 02:07:29')[0m
+  [4;36;1mRouteRule Create (0.7ms)[0m   [0;1mINSERT INTO "route_rules" ("updated_at", "url", "did", "created_at") VALUES('2009-02-04 02:08:37', 'http://www.konectas.com/calls/inbound_start', '2146935115', '2009-02-04 02:08:37')[0m
+  [4;35;1mCallerId Create (0.5ms)[0m   [0mINSERT INTO "caller_ids" ("updated_at", "description", "did", "created_at") VALUES('2009-02-04 02:08:37', '(214) 693-5115', '2146935115', '2009-02-04 02:08:37')[0m

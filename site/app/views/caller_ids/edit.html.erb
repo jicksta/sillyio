@@ -1,0 +1,20 @@
+<h1>Editing caller_id</h1>
+
+<% form_for(@caller_id) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :did %><br />
+    <%= f.text_field :did %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @caller_id %> |
+<%= link_to 'Back', caller_ids_path %>
