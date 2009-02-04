@@ -249,7 +249,7 @@ describe "Redirect" do
       S::Sillyio::Verbs::Redirect.from_xml_element(xml_element).run(new_mock_call)
     rescue S::Sillyio::Redirection => redirect
       redirect.uri.to_s.should eql(uri)
-      redirect.method.should eql(method)
+      redirect.http_method.should eql(method)
     else
       fail "No Redirection exception raised!"
     end
