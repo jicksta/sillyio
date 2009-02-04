@@ -1,0 +1,23 @@
+<h1>Listing route_rules</h1>
+
+<table>
+  <tr>
+	<td>DID</td>
+	<td>URL</td>
+	<td colspan="3">&nbsp;</td>
+  </tr>
+
+<% for route_rule in @route_rules %>
+  <tr>
+    <td><%= route_rule.did%></td>
+	<td><%= route_rule.url%></td>
+	<td><%= link_to 'Show', route_rule %></td>
+    <td><%= link_to 'Edit', edit_route_rule_path(route_rule) %></td>
+    <td><%= link_to 'Destroy', route_rule, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New route_rule', new_route_rule_path %>
