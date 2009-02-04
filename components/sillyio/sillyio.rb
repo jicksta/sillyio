@@ -110,7 +110,7 @@ class Sillyio
   def parse_application
     # Check all Verb names
     @parsed_application = @lexed_application.map do |element|
-      Verbs.const_get(element.name).from_document(element, @uri)
+      Verbs.const_get(element.name).from_document(element, @application)
     end
   end
   
@@ -199,7 +199,7 @@ class Sillyio
         :method      => "POST",
         :timeout     => "5",
         :finishOnKey => '#',
-        :numDigits   => "0"
+        :numDigits   => "unlimited"
       },
       "Record" => {
         # :action    => DYNAMIC! MUST BE SET IN METHOD,
@@ -319,27 +319,65 @@ class Sillyio
       class << self
         def from_document(element, uri)
           attributes = attributes_from_xml_element element
-          action = attributes[:action]
-          @application = uri
-          new
+          
+          raise ArgumentError, "URI must be a URI class" unless uri.kind_of? URI::HTTP
+          
+          # Checking the 'action' attribute
+          action = attributes[:action] || uri.to_s
+          if action !~ %r"https?://"
+            # Relative paths are added to the application URI
+            action = uri.merge URI.parse(action)
+          end
+          
+          # Checking the "method" attribute
+          http_method = attributes[:method].downcase
+          raise TwiMLFormatException, "Gather 'method' must be GET or HEAD" unless %w[get post].include? http_method
+          
+          # Checking the timeout attribute
+          timeout = attributes[:timeout]
+          raise TwiMLFormatException, "Gather 'timeout' is not a positive integer!" unless timeout =~ /^[1-9]\d*$/
+          timeout = timeout.to_i
+          
+          # Checking the "finishOnKey" attribute
+          terminating_key = attributes[:finishOnKey]
+          unless((("0".."9").to_a + ["*", "#", ""]).include?(terminating_key))
+            raise TwiMLFormatException, "Invalid finishOnKey attribute (#{terminating_key}) for <Gather>" 
+          end
+          
+          # Checking the "numDigits" attribtue
+          number_of_digits = attributes[:numDigits]
+          unless number_of_digits =~ /^[1-9]\d*$/ || number_of_digits == "unlimited"
+            raise TwiMLFormatException, "Gather 'numDigits' is not a positive integer!" 
+          end
+          number_of_digits = number_of_digits == "unlimited" ? number_of_digits : number_of_digits.to_i
+          
+          new(action, http_method, timeout, terminating_key, number_of_digits)
         end
       end
       
-      def initialize #.....
-        # TODO
+      attr_reader :action, :http_method, :timeout, :terminating_key, :number_of_digits
+      def initialize(action, http_method, timeout, terminating_key, number_of_digits)
+        @action, @http_method, @timeout, @terminating_key, @number_of_digits = action, http_method, timeout, terminating_key, number_of_digits
       end
       
       def prepare
-        # TODO: prepare all nested elements
+        # TODO: prepare() all nested elements
       end
       
       def run(call)
-        result = call.input @number_of_digits,
-           :play            => @sound_files,
-           :timeout         => @timouet,
-           :terminating_key => @terminating_key
+        options = {
+          :play            => @sound_files,
+          :timeout         => @timeout,
+          :terminating_key => @terminating_key
+        }
         
-        raise Redirection.new(uri, @http_method, {"Digits" => result})
+        result = if @number_of_digits == "unlimited"
+          call.input options
+        else
+          call.input @number_of_digits, options
+        end
+        
+        raise Redirection.new(@action, @http_method, {"Digits" => result})
       end
       
     end

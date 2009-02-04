@@ -124,33 +124,116 @@ describe "Gather" do
     it "should convert a relative URL to an absolute URL" do
       relative = "2.xml"
       full = "http://example.com/1.xml"
+      full_second = "http://example.com/#{relative}"
       
       xml_element = xml_node "Gather", :action => relative
       
+      verb = S::Sillyio::Verbs::Gather.from_document(xml_element, URI.parse(full))
+      
+      call = new_mock_call
+      mock(call).input(is_a(Hash))
+      
+      begin
+        verb.run(call)
+      rescue S::Sillyio::Redirection => redirection
+        redirection.uri.to_s.should eql(full_second)
+      else
+        fail "No Redirection raised"
+      end
+      
     end
-    it "should default to the current document URL"
+    it "should default to the current document URL" do
+      url = "http://example.com/qaz.xml"
+      verb = S::Sillyio::Verbs::Gather.from_document(xml_node("Gather"), URI.parse(url))
+      
+      call = new_mock_call
+      mock(call).input(is_a(Hash))
+      
+      begin
+        verb.run(call)
+      rescue S::Sillyio::Redirection => redirection
+        redirection.uri.to_s.should eql(url)
+      else
+        fail "No Redirection raised"
+      end
+      
+    end
   end
   describe 'the "method" attribute' do
-    it 'should allow only "GET" or "POST"'
-    it "should default to POST"
-    it "should raise a TwiMLFormatException if the value is anything else"
+    it 'should allow only "GET" or "POST"' do
+      lambda do
+        S::Sillyio::Verbs::Gather.from_document(xml_node("Gather", :method => "HEAD"), random_uri)
+      end.should raise_error(S::Sillyio::TwiMLFormatException)
+    end
+    it "should default to POST" do
+      S::Sillyio::Verbs::Gather.from_document(xml_node("Gather"), random_uri).http_method.should eql("post")
+    end
   end
   describe 'the "timeout" attribute' do
-    it "should default to 5 seconds"
-    it "should raise a TwiMLFormatException if the value is not a positive integer"
+    it "should default to 5 seconds" do
+      S::Sillyio::Verbs::Gather.from_document(xml_node("Gather"), random_uri).timeout.should equal(5)
+    end
+    it "should raise a TwiMLFormatException if the value is not a positive integer" do
+      lambda do
+        verb = S::Sillyio::Verbs::Gather.from_document(xml_node("Gather", :timeout => "cough"), random_uri)
+      end.should raise_error(S::Sillyio::TwiMLFormatException)
+    end
   end
   
   describe 'the "finishOnKey" attribute' do
-    it 'should allow the 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, *, "" or # keys'
-    it "should not allow any other keys"
-    it "should strip off the terminator"
-    it "should not allow multiple characters"
+    it 'should allow the 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, *, "" or # keys' do
+      allowed_keys = ("0".."9").to_a + ["*", "#", ""]
+      allowed_keys.each do |key|
+        xml_element = xml_node("Gather", :finishOnKey => key)
+        lambda do
+          S::Sillyio::Verbs::Gather.from_document xml_element, random_uri
+        end.should_not raise_error(S::Sillyio::TwiMLFormatException)
+      end
+    end
+    it "should not allow any other keys" do
+      bad_keys = %w[^ . | < & j a y]
+      bad_keys.each do |key|
+        xml_element = xml_node("Gather", :finishOnKey => key)
+        lambda do
+          S::Sillyio::Verbs::Gather.from_document xml_element, random_uri
+        end.should raise_error(S::Sillyio::TwiMLFormatException)
+      end
+    end
+    # it "should strip off the terminator" # Handled by Adhearsion
+    it "should not allow multiple characters" do
+      allowed_keys = (("0".."9").to_a + ["*", "#"]).map { |key| key * 2 }
+      allowed_keys.each do |key|
+        xml_element = xml_node("Gather", :finishOnKey => key)
+        lambda do
+          S::Sillyio::Verbs::Gather.from_document xml_element, random_uri
+        end.should raise_error(S::Sillyio::TwiMLFormatException)
+      end
+    end
   end
   
   describe 'the "numDigits" attribute' do
-    it "should default to unlimited"
-    it "should raise a TwiMLFormatException if the integer is less than 0"
-    it "should riase a TwiMLFormatException if the numDigits is not an integer value"
+    
+    it "should default to 'unlimited'" do
+      S::Sillyio::Verbs::Gather.from_document(xml_node("Gather"), random_uri).number_of_digits.should eql("unlimited")
+    end
+    
+    it "should raise a TwiMLFormatException if the integer is less than 1" do # In the future, 0 may become "unlimited"
+      ["0", "-1", "-100"].each do |bad_number|
+        lambda do
+          xml_element = xml_node("Gather", :numDigits => bad_number)
+          S::Sillyio::Verbs::Gather.from_document(xml_element, random_uri)
+        end.should raise_error(S::Sillyio::TwiMLFormatException)
+      end
+    end
+    
+    it "should raise a TwiMLFormatException if the numDigits is not an integer value or 'unlimited'" do
+      %w[foo bar qaz 0x100].each do |bad_number|
+        lambda do
+          xml_element = xml_node("Gather", :numDigits => bad_number)
+          S::Sillyio::Verbs::Gather.from_document(xml_element, random_uri)
+        end.should raise_error(S::Sillyio::TwiMLFormatException)
+      end
+    end
   end
   
   it 'should redirect to the script specified in "action" by POSTing or GETing the "Digits" to the URL'
@@ -228,7 +311,6 @@ describe "Redirect" do
       S::Sillyio::Verbs::Redirect.from_document(xml_element)
     end.should raise_error(S::Sillyio::TwiMLFormatException)
   end
-  
   
   it "should allow a Symbol for the method" do
     lambda do

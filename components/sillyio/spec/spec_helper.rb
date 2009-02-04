@@ -46,6 +46,10 @@ module SillyioTestHelper
     XML
   end
 
+  def random_uri
+    URI.parse("http://example.com/#{rand(1000)}.xml")
+  end
+
   def new_mock_call
     returning Object.new do |call|
       stub(call).uniqueid { Time.now.to_f.to_s }
