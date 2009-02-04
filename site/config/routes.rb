@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :caller_ids
+
   map.resources :route_rules
 
   # The priority is based upon order of creation: first created -> highest priority.

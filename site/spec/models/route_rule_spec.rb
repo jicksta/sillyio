@@ -23,12 +23,12 @@ describe RouteRule do
   #  @incoming.should be_valid
   #end
 
-  it "should be invalid without a url" do
-    @incoming.attributes = @valid_attributes.except(:url)
-    @incoming.should_not be_valid
-    @incoming.url = "http://www.konectas.com/calls/inbound_start"
-    @incoming.should be_valid
-  end
+  #it "should be invalid without a url" do
+  #  @incoming.attributes = @valid_attributes.except(:url)
+  #  @incoming.should_not be_valid
+  #  @incoming.url = "http://www.konectas.com/calls/inbound_start"
+  #  @incoming.should be_valid
+  #end
 
   it "should be invalid without a 10 digit did" do
     @incoming.attributes = @valid_attributes.except(:did)

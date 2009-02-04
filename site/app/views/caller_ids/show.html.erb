@@ -1,0 +1,13 @@
+<p>
+  <b>Did:</b>
+  <%=h @caller_id.did %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @caller_id.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_caller_id_path(@caller_id) %> |
+<%= link_to 'Back', caller_ids_path %>

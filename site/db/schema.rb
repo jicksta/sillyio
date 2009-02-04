@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090202232341) do
+ActiveRecord::Schema.define(:version => 20090204013006) do
+
+  create_table "caller_ids", :force => true do |t|
+    t.string   "did",         :limit => 10
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "route_rules", :force => true do |t|
     t.string   "did",        :limit => 10

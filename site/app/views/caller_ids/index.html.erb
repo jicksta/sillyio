@@ -1,0 +1,22 @@
+<h1>Listing caller_ids</h1>
+
+<table>
+  <tr>
+    <th>Did</th>
+    <th>Description</th>
+  </tr>
+
+<% for caller_id in @caller_ids %>
+  <tr>
+    <td><%=h caller_id.did %></td>
+    <td><%=h caller_id.description %></td>
+    <td><%= link_to 'Show', caller_id %></td>
+    <td><%= link_to 'Edit', edit_caller_id_path(caller_id) %></td>
+    <td><%= link_to 'Destroy', caller_id, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New caller_id', new_caller_id_path %>
