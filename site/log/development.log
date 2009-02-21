@@ -5450,3 +5450,74 @@ Processing CallerIdsController#show (for 127.0.0.1 at 2009-02-03 20:10:21) [GET]
 Rendering template within layouts/application
 Rendering caller_ids/show
 Completed in 11ms (View: 5, DB: 0) | 200 OK [http://localhost/caller_ids/1]
+
+
+Processing CallerIdsController#index (for 127.0.0.1 at 2009-02-21 00:22:20) [GET]
+  [4;36;1mCallerId Load (0.7ms)[0m   [0;1mSELECT * FROM "caller_ids" [0m
+Rendering template within layouts/application
+Rendering caller_ids/index
+Completed in 10ms (View: 6, DB: 1) | 200 OK [http://localhost/caller_ids]
+
+
+Processing CallerIdsController#new (for 127.0.0.1 at 2009-02-21 00:22:26) [GET]
+Rendering template within layouts/application
+Rendering caller_ids/new
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/caller_ids/new]
+
+
+Processing CallerIdsController#index (for 127.0.0.1 at 2009-02-21 00:22:28) [GET]
+  [4;35;1mCallerId Load (0.4ms)[0m   [0mSELECT * FROM "caller_ids" [0m
+Rendering template within layouts/application
+Rendering caller_ids/index
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/caller_ids]
+
+
+Processing CallerIdsController#show (for 127.0.0.1 at 2009-02-21 00:22:36) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mCallerId Load (0.2ms)[0m   [0;1mSELECT * FROM "caller_ids" WHERE ("caller_ids"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering caller_ids/show
+Completed in 18ms (View: 14, DB: 0) | 200 OK [http://localhost/caller_ids/1]
+
+
+Processing RouteRulesController#index (for 127.0.0.1 at 2009-02-21 00:22:51) [GET]
+  [4;35;1mRouteRule Load (0.5ms)[0m   [0mSELECT * FROM "route_rules" [0m
+Rendering template within layouts/application
+Rendering route_rules/index
+Completed in 103ms (View: 22, DB: 0) | 200 OK [http://localhost/route_rules]
+
+
+Processing ManagementController#welcome (for 127.0.0.1 at 2009-02-21 00:28:25) [GET]
+Rendering template within layouts/application
+Rendering management/welcome
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing ManagementController#welcome (for 127.0.0.1 at 2009-02-21 00:28:26) [GET]
+Rendering template within layouts/application
+Rendering management/welcome
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing ManagementController#welcome (for 127.0.0.1 at 2009-02-21 00:28:27) [GET]
+Rendering template within layouts/application
+Rendering management/welcome
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing ManagementController#welcome (for 127.0.0.1 at 2009-02-21 00:28:35) [GET]
+Rendering template within layouts/application
+Rendering management/welcome
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing ManagementController#welcome (for 127.0.0.1 at 2009-02-21 00:28:41) [GET]
+Rendering template within layouts/application
+Rendering management/welcome
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing ManagementController#welcome (for 127.0.0.1 at 2009-02-21 00:29:17) [GET]
+Rendering template within layouts/application
+Rendering management/welcome
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
