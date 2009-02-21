@@ -1,4 +1,5 @@
 .DS_Store
+log/*
 site/public/audio/cached/*
 !site/public/audio/cached/README.txt
 site/public/audio/WIP/*
