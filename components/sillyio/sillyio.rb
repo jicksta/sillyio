@@ -78,6 +78,7 @@ class Sillyio
   rescue Redirection => redirection
     @application = redirection.uri
     @http_method = redirection.http_method
+    @additional_headers = redirection.params
     retry
   end
   
@@ -123,7 +124,11 @@ class Sillyio
   end
   
   def metadata
-    @metadata ||= immediate_call_metadata.merge(location_data)
+    immediate_call_metadata.merge(location_data).merge(additional_headers)
+  end
+  
+  def additional_headers
+    @additional_headers || {}
   end
   
   def location_data

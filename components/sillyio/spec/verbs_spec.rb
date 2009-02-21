@@ -236,7 +236,20 @@ describe "Gather" do
     end
   end
   
-  it 'should redirect to the script specified in "action" by POSTing or GETing the "Digits" to the URL'
+  it 'should redirect to the script specified in "action" by POSTing or GETing the "Digits" to the URL' do
+    action = "http://example.com/action.xml"
+    digits = "54321"
+    mock(RestClient).post(action, hash_containing("Digits" => digits))
+    
+    xml_element = xml_node("Gather", :action => action, :method => "POST")
+    verb = S::Sillyio::Verbs::Gather.from_document(xml_element, random_uri)
+    
+    call = mock("Call")
+    call.input(5) { digits }
+    
+    mock(verb)
+  end
+  
   it 'should redirect to the script specified in "action" when a hangup is encountered during the execution'
   it "should not redirect if a timeout is encountered"
   
