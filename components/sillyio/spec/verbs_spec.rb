@@ -237,17 +237,26 @@ describe "Gather" do
   end
   
   it 'should redirect to the script specified in "action" by POSTing or GETing the "Digits" to the URL' do
+    app    = "http://example.com/app.xml"
     action = "http://example.com/action.xml"
     digits = "54321"
-    mock(RestClient).post(action, hash_containing("Digits" => digits))
     
-    xml_element = xml_node("Gather", :action => action, :method => "POST")
-    verb = S::Sillyio::Verbs::Gather.from_document(xml_element, random_uri)
+    mock(RestClient).post(app, is_a(Hash)) do
+      "<?xml version='1.0' encoding='UTF-8'?>
+      <Response><Gather action='#{action}' method='POST' numDigits='5'/></Response>"
+    end
     
-    call = mock("Call")
-    call.input(5) { digits }
+    mock(RestClient).post(action, hash_including("Digits" => digits)) do
+      '<?xml version="1.0" encoding="UTF-8"?>
+      <Response></Response>'
+    end
     
-    mock(verb)
+    call = new_mock_call
+    mock(call).input(5, is_a(Hash)) { digits }
+    
+    sillyio = S::Sillyio.new(call, app)
+    
+    sillyio.run
   end
   
   it 'should redirect to the script specified in "action" when a hangup is encountered during the execution'
