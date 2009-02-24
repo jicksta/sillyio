@@ -25,6 +25,7 @@ module SillyioTestHelper
   end
 
   def xml_node(name, *args)
+    @doc ||= 
     args = args.clone
     options = args.last.kind_of?(Hash) ? args.pop : {}
     returning XML::Node.new(name) do |element|

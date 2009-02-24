@@ -237,21 +237,49 @@ describe "Gather" do
   end
   
   it 'should redirect to the script specified in "action" by POSTing or GETing the "Digits" to the URL' do
+    application = random_uri
     action = "http://example.com/action.xml"
     digits = "54321"
-    mock(RestClient).post(action, hash_containing("Digits" => digits))
+    mock(RestClient).post(action, hash_including("Digits" => digits))
     
-    xml_element = xml_node("Gather", :action => action, :method => "POST")
-    verb = S::Sillyio::Verbs::Gather.from_document(xml_element, random_uri)
+    xml_element = xml_node "Gather", :action => action, :method => "POST", :numDigits => 5
+    verb = S::Sillyio::Verbs::Gather.from_document(xml_element, application)
     
-    call = mock("Call")
-    call.input(5) { digits }
+    call = new_mock_call
+    mock(call).input(5) { digits }
     
-    mock(verb)
+    lambda do
+      app = SillyIO.new(call, application)
+      app.send :instance_variable_set, :@parsed_application, [xml_element]
+      app.execute_application
+    end
   end
   
   it 'should redirect to the script specified in "action" when a hangup is encountered during the execution'
   it "should not redirect if a timeout is encountered"
+  
+  describe "handling nested elements" do
+    it "should prepare all nested elements" do
+      nested_verb_elements = [
+          xml_node("Play", "http://example.com/hello.wav"),
+          xml_node("Play", "http://example.com/world.wav")
+      ]
+      
+      nested_verbs = nested_verb_elements.map do |element|
+        verb = S::Sillyio::Verbs::Play.from_document(element)
+        mock(verb).prepare
+        verb
+      end
+      
+      gather_and_play = xml_node "Gather", *nested_verbs
+      
+      verb = S::Sillyio::Verbs::Gather.from_document(gather_and_play, random_uri)
+      verb.prepare
+    end
+    describe "when a nested element should be loop infinitely" do
+      
+    end
+  end
   
 end
 

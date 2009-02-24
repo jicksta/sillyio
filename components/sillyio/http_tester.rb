@@ -14,6 +14,7 @@ get_and_post "/play-digits" do
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Gather action="/play-gathered-digits" method="POST" finishOnKey="#" numDigits="5" timeout="5"/>
+  <Play>http://sandbox.adhearsion.com/sounds/tt-monkeys.gsm</Play>
 </Response>
   XML
 

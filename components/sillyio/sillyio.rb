@@ -74,7 +74,7 @@ class Sillyio
     fetch_application
     lex_application
     parse_application
-    run_application
+    execute_application
   rescue Redirection => redirection
     @application = redirection.uri
     @http_method = redirection.http_method
@@ -115,7 +115,7 @@ class Sillyio
     end
   end
   
-  def run_application
+  def execute_application
     @parsed_application.each do |verb|
       # TODO: Prepare verbs in parallel
       verb.prepare if verb.respond_to? :prepare
@@ -267,7 +267,7 @@ class Sillyio
 
       end
 
-      attr_reader :encoded_filename, :audio_directory, :sound_file, :temp_sound_file, :loop_times
+      attr_reader :encoded_filename, :audio_directory, :sound_file, :playable_sound_file_name, :temp_sound_file, :loop_times
       def initialize(uri, loop_times=1)
         raise ArgumentError, "First argument must be a URI object!" unless uri.kind_of? URI::HTTP
         @uri = uri
@@ -291,7 +291,7 @@ class Sillyio
         file_extension = content_type[/^audio\/(x-)?(.+)$/, 2]
         
         # Cannot give extension to Asterisk
-        @sound_file_name = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}"
+        @playable_sound_file_name = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}"
         
         @sound_file        = File.expand_path "#{@audio_directory}/cached/#{@encoded_filename}.#{file_extension}"
         @temp_sound_file   = File.expand_path "#{@audio_directory}/WIP/#{@encoded_filename}.#{file_extension}"
@@ -308,11 +308,15 @@ class Sillyio
         @prepared = true
       end
       
+      def infinite?
+        loop_times.zero?
+      end
+      
       def run(call)
-        if loop_times.zero?
-          loop { call.play @sound_file_name }
+        if infinite?
+          loop { call.play @playable_sound_file_name }
         else
-          loop_times.times { call.play @sound_file_name }
+          loop_times.times { call.play @playable_sound_file_name }
         end
       end
       
@@ -356,36 +360,111 @@ class Sillyio
           end
           number_of_digits = number_of_digits == "unlimited" ? number_of_digits : number_of_digits.to_i
           
-          new(action, http_method, timeout, terminating_key, number_of_digits)
+          nested_verbs = element.find("Play|Say").to_a do |child|
+            Verbs.const_get(child.name).from_document(child, uri)
+          end.compact
+          
+          new(action, http_method, timeout, terminating_key, number_of_digits, *nested_verbs)
         end
       end
       
-      attr_reader :action, :http_method, :timeout, :terminating_key, :number_of_digits
-      def initialize(action, http_method, timeout, terminating_key, number_of_digits)
+      attr_reader :action, :http_method, :timeout, :terminating_key, :number_of_digits, :nested_verbs, :result
+      def initialize(action, http_method, timeout, terminating_key, number_of_digits, *nested_verbs)
         @action, @http_method, @timeout, @terminating_key, @number_of_digits = action, http_method, timeout, terminating_key, number_of_digits
+        @nested_verbs = nested_verbs.flatten
       end
       
       def prepare
-        # TODO: prepare() all nested elements
+        # Prepare all verbs concurrently
+        # nested_verbs.map do |verb|
+        #   Thread.new { verb.prepare }
+        # end.map(&:join)
+        p nested_verbs
+        nested_verbs.each(&:prepare)
       end
       
       def run(call)
+        if nested_verbs.find(&:infinite?)
+          preliminary_sound_files, unplayable_sound_files = [], nil
+          infinitely_played_file  = nil
+          
+          nested_verbs.each_with_index do |verb, index|
+            if verb.infinite?
+              infinitely_played_file = verb
+              unplayable_sound_files = nested_verbs[index+1..-1]
+            else
+              preliminary_sound_files << verb
+            end
+          end
+          
+          if unplayable_sound_files.any?
+            ahn_log.sillyio.warn "<Gather> contains unplayable sound files: #{unplayable_sound_files.inspect}"
+          end
+          
+          run_with_files(call, *sound_file_names_from_verbs(preliminary_sound_files))
+          
+          # If a Redirection has not been raised yet, we'll continue.
+          
+          options = {
+            :play            => infinitely_played_file.playable_sound_file_name,
+            :timeout         => @timeout,
+            :terminating_key => @terminating_key
+          }
+          
+          @result = if @number_of_digits == "unlimited"
+            call.input options
+          else
+            call.input @number_of_digits, options
+          end
+          
+          loop do
+            @result = if @number_of_digits == "unlimited"
+              call.input options
+            else
+              call.input @number_of_digits, options
+            end
+            
+            redirect_with_digits @result if @result
+          end
+          
+        else
+          run_with_files(call, *sound_file_names_from_verbs(nested_verbs))
+        end
+        
+      end
+      
+      protected
+      
+      def sound_file_names_from_verbs(*verbs)
+        verbs.flatten.inject([]) do |expanded_verbs, verb|
+          loop_times = verb["loop"] || 1
+          expanded_verbs + ([verb.playable_sound_file_name] * loop_times.to_i)
+        end
+      end
+      
+      def run_with_files(call, *files)
         options = {
-          :play            => @sound_files,
+          :play            => files,
           :timeout         => @timeout,
           :terminating_key => @terminating_key
         }
-        
-        result = if @number_of_digits == "unlimited"
+      
+        @result = if @number_of_digits == "unlimited"
           call.input options
         else
           call.input @number_of_digits, options
         end
-        
-        raise Redirection.new(@action, @http_method, {"Digits" => result})
+        redirect_with_digits @result if @result
       end
+
+      def redirect_with_digits(digits)
+        raise Redirection.new(@action, @http_method, {"Digits" => digits})
+      end
+
       
     end
+  
+  
   
     # http://www.twilio.com/docs/api_reference/TwiML/pause
     class Pause < AbstractVerb
