@@ -360,9 +360,11 @@ class Sillyio
           end
           number_of_digits = number_of_digits == "unlimited" ? number_of_digits : number_of_digits.to_i
           
-          nested_verbs = element.find("Play|Say").to_a do |child|
+          nested_verbs = element.children.to_a.select do |child|
+            child.name == "Play" || child.name == "Say"
+          end.map do |child|
             Verbs.const_get(child.name).from_document(child, uri)
-          end.compact
+          end
           
           new(action, http_method, timeout, terminating_key, number_of_digits, *nested_verbs)
         end
@@ -375,12 +377,11 @@ class Sillyio
       end
       
       def prepare
-        # Prepare all verbs concurrently
-        # nested_verbs.map do |verb|
-        #   Thread.new { verb.prepare }
-        # end.map(&:join)
-        p nested_verbs
-        nested_verbs.each(&:prepare)
+        nested_verbs.map do |verb|
+          # Prepare all verbs concurrently
+          Thread.new { verb.prepare }
+        end.map(&:join)
+        # nested_verbs.each(&:prepare)
       end
       
       def run(call)

@@ -131,10 +131,10 @@ describe "Gather" do
       verb = S::Sillyio::Verbs::Gather.from_document(xml_element, URI.parse(full))
       
       call = new_mock_call
-      mock(call).input(is_a(Hash))
+      mock(call).input(is_a(Hash)) { "1111" }
       
       begin
-        verb.run(call)
+        verb.run call
       rescue S::Sillyio::Redirection => redirection
         redirection.uri.to_s.should eql(full_second)
       else
@@ -147,7 +147,7 @@ describe "Gather" do
       verb = S::Sillyio::Verbs::Gather.from_document(xml_node("Gather"), URI.parse(url))
       
       call = new_mock_call
-      mock(call).input(is_a(Hash))
+      mock(call).input(is_a(Hash)) { "1111" }
       
       begin
         verb.run(call)
@@ -240,21 +240,22 @@ describe "Gather" do
     application = random_uri
     action = "http://example.com/action.xml"
     digits = "54321"
-    mock(RestClient).post(action, hash_including("Digits" => digits))
+    # mock(RestClient).post(action, hash_including("Digits" => digits))
     
     xml_element = xml_node "Gather", :action => action, :method => "POST", :numDigits => 5
     verb = S::Sillyio::Verbs::Gather.from_document(xml_element, application)
     
     call = new_mock_call
-    mock(call).input(5) { digits }
+    mock(call).input(5, is_a(Hash)) { digits }
     
     begin
-      app = SillyIO.new(call, application)
-      app.send :instance_variable_set, :@parsed_application, [xml_element]
-      app.execute_application
+      app = S::Sillyio.new(call, application.to_s)
+      app.send :instance_variable_set, :@parsed_application, [verb]
+      app.send :execute_application
     rescue S::Sillyio::Redirection => redirect
       redirect.uri.to_s.should eql(action)
-      redirect.http_method.should eql("POST")
+      redirect.http_method.should eql("post")
+      redirect.params["Digits"].should == digits
     else
       fail "No Redirection exception raised!"
     end
@@ -270,15 +271,12 @@ describe "Gather" do
           xml_node("Play", "http://example.com/world.wav")
       ]
       
-      nested_verbs = nested_verb_elements.map do |element|
-        verb = S::Sillyio::Verbs::Play.from_document(element)
-        mock(verb).prepare
-        verb
-      end
-      
-      gather_and_play = xml_node "Gather", *nested_verbs
+      gather_and_play = xml_node "Gather", *nested_verb_elements
       
       verb = S::Sillyio::Verbs::Gather.from_document(gather_and_play, random_uri)
+      
+      verb.nested_verbs.each { |nested_verb| mock(nested_verb).prepare }
+      
       verb.prepare
     end
     describe "when a nested element should be loop infinitely" do
