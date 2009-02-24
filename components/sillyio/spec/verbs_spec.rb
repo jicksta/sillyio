@@ -248,10 +248,15 @@ describe "Gather" do
     call = new_mock_call
     mock(call).input(5) { digits }
     
-    lambda do
+    begin
       app = SillyIO.new(call, application)
       app.send :instance_variable_set, :@parsed_application, [xml_element]
       app.execute_application
+    rescue S::Sillyio::Redirection => redirect
+      redirect.uri.to_s.should eql(action)
+      redirect.http_method.should eql("POST")
+    else
+      fail "No Redirection exception raised!"
     end
   end
   
