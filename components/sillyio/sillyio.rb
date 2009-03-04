@@ -104,7 +104,7 @@ class Sillyio
       
       doc.find("/Response/*").to_a # Ignores text elements
     end
-  rescue LibXML::XML::Error => parse_error
+  rescue LibXML::XML::Error, LibXML::XML::Parser::ParseError => parse_error
     raise TwiMLSyntaxException, parse_error.message
   end
   
@@ -438,8 +438,14 @@ class Sillyio
       
       def sound_file_names_from_verbs(*verbs)
         verbs.flatten.inject([]) do |expanded_verbs, verb|
-          loop_times = verb["loop"] || 1
-          expanded_verbs + ([verb.playable_sound_file_name] * loop_times.to_i)
+          expanded_verbs + case verb
+            when XML::Node
+              loop_times = verb["loop"] || 1
+              [verb.playable_sound_file_name] * loop_times.to_i
+            when Play, Say
+              loop_times = verb.loop_times
+              [verb.playable_sound_file_name] * loop_times
+          end
         end
       end
       

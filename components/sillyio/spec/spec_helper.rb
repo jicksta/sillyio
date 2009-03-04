@@ -47,6 +47,12 @@ module SillyioTestHelper
     XML
   end
 
+  def stub_actual_fetching(content_type="audio/x-gsm")
+    stub(S::Sillyio::SillyioSupport).http_head(is_a(URI::HTTP)) { {"content-type" => content_type} }
+    stub(S::Sillyio::SillyioSupport).download(is_a(String), is_a(String))
+    stub(FileUtils).mv(is_a(String), is_a(String))
+  end
+
   def random_uri
     URI.parse("http://example.com/#{rand(1000)}.xml")
   end
