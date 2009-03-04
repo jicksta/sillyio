@@ -108,12 +108,6 @@ describe "Play" do
     play.sound_file.ends_with?("/#{filename}").should equal(true)
   end
   
-  def stub_actual_fetching(content_type="audio/x-gsm")
-    stub(S::Sillyio::SillyioSupport).http_head(is_a(URI::HTTP)) { {"content-type" => content_type} }
-    stub(S::Sillyio::SillyioSupport).download(is_a(String), is_a(String))
-    stub(FileUtils).mv(is_a(String), is_a(String))
-  end
-  
 end
 
 describe "Gather" do
@@ -279,9 +273,40 @@ describe "Gather" do
       
       verb.prepare
     end
-    describe "when a nested element should be loop infinitely" do
+    
+    describe "with a loop attribute" do
       
+      include SillyioTestHelper
+      
+      it "should pass input() a repetitious sequence of files which should loop a finite number of times" do      
+        stub_actual_fetching "audio/wav"
+        
+        expected_sequence = (["http://example.com/hello.wav"] * 5) + (["http://example.com/world.wav"] * 4)
+        nested_verb_elements = [
+            xml_node("Play", "http://example.com/hello.wav", :loop => "5"),
+            xml_node("Play", "http://example.com/world.wav", :loop => "4")
+        ]
+        gather = xml_node "Gather", *nested_verb_elements
+        
+        verb = S::Sillyio::Verbs::Gather.from_document(gather, random_uri)
+        
+        call = new_mock_call
+        mock(call).input(satisfy do |arg|
+          arg.should be_kind_of(Hash)
+          arg.has_key?(:play).should equal(true)
+          
+          sound_files = arg[:play]
+          sound_files.size.should equal(9)
+          sound_files[0...5].uniq.size.should equal(1)
+          sound_files[5..-1].uniq.size.should equal(1)
+          true # Pass if no exceptions yet
+        end)
+        
+        verb.prepare
+        verb.run call
+      end
     end
+    
   end
   
 end

@@ -126,7 +126,7 @@ describe "Executing a TwiML resource" do
         mock(verb).prepare
         mock(verb).run call
       end
-      sillyio.send :run_application
+      sillyio.send :execute_application
     end
   end
   
